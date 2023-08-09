@@ -1,0 +1,41 @@
+#
+# Working draft of inputs to the Mu2e computing model.
+# Using during development.
+#
+PlanDuration: {
+  start : "2024-01-01"
+  end   : "2037-12-31"
+}
+
+# List all of the running periods
+Runs : [
+ {
+    name     : "cosmicExtracted1"
+    type     : cosmicCalOnly
+    start    : "2024-02-01"
+    end      : "2024-06-30"
+    fraction : 0.9
+ },
+ {
+    name     : "cosmicExtracted2"
+    type     : cosmicExtracted
+    start    : "2024-07-01"
+    end      : "2024-08-31"
+    fraction : 0.4
+ },
+ {
+    name     : "cosmicExtracted3"
+    type     : cosmicExtracted
+    start    : "2024-09-01"
+    end      : "2025-02-15"
+    fraction : 0.4
+ },
+ {
+    name     : "cosmicExtracted4"
+    type     : cosmicExtracted
+    start    : "2024-09-01"
+    end      : "2025-02-15"
+    fraction : 0.4
+ }
+
+]

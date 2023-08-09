@@ -1,5 +1,14 @@
 #include "PlanInputs.hh"
 #include "DurationCalculator.hh"
+#include "Run.hh"
+#include "dateHelpers.hh"
+
+#include "cetlib/filepath_maker.h"
+
+#include "fhiclcpp/ParameterSet.h"
+#include "fhiclcpp/types/Atom.h"
+#include "fhiclcpp/types/Sequence.h"
+#include "fhiclcpp/types/Table.h"
 
 #include <array>
 #include <stdexcept>
@@ -9,11 +18,40 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
+namespace {
+  using Name = fhicl::Name;
+  using Comment = fhicl::Comment;
+
+  struct PlanDuration {
+    fhicl::Atom<std::string> start{ Name{"start"}};
+    fhicl::Atom<std::string> end{ Name{"end"}};
+  };
+
+  struct Config{
+    fhicl::Table<PlanDuration> planDuration {Name("PlanDuration")};
+    fhicl::Sequence<fhicl::Table<Run::Config>> runs {Name("Runs")};
+  };
+
+}
+
 PlanInputs::PlanInputs( std::string const& fileName ){
   cout << "PlanInputs filename: " << fileName << endl;
 
-  startDate.Set("2024-01-01 00:00:00");
-  endDate.Set  ("2037-12-31 23:59:59");
+  cet::filepath_lookup policy("FHICL_FILE_PATH");
+  fhicl::ParameterSet pSet{fhicl::ParameterSet::make(fileName, policy)};
+  fhicl::Table<Config> config{pSet};
+
+  std::string start = config().planDuration().start();
+  std::string end   = config().planDuration().end();
+
+  startDate.Set( dayStart(start).c_str());
+  endDate.Set  ( dayEnd(end).c_str());
+
+  std::vector<Run::Config> runs = config().runs();
+
+  for ( Run::Config& c : runs ){
+    _runs.emplace_back(c);
+  }
 
   goodInputsOrThrow();
 
@@ -26,6 +64,12 @@ void PlanInputs::print() const{
   cout << "Duration in weeks:    " << planDurationInWeeks()    << endl;
   cout << "Duration in months:   " << planDurationInMonths()   << endl;
   cout << "Duration in quarters: " << planDurationInQuarters() << endl;
+
+  cout << "\nRunning Periods: " << endl;
+  for ( auto const& r : _runs ){
+    cout << " " << r << endl;
+  }
+
 
 }
 

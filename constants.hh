@@ -7,6 +7,7 @@ namespace constants {
   constexpr unsigned daysPerWeek    =     7;
   constexpr unsigned secondsPerDay  =  secondsPerHour*hoursPerDay;
   constexpr unsigned secondsPerWeek =  secondsPerHour*hoursPerDay*daysPerWeek;
+
 }
 
 #endif

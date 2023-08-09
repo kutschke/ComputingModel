@@ -4,14 +4,31 @@
 #include "TDatime.h"
 #include "RunType.hh"
 
+#include "fhiclcpp/ParameterSet.h"
+#include "fhiclcpp/types/Atom.h"
+
 #include <iosfwd>
+#include <string>
 
 class Run{
 
 public:
 
-  // Needed for std::vector
-  Run();
+  // Runtime configuration
+  struct Config {
+    using Name = fhicl::Name;
+    using Comment = fhicl::Comment;
+    fhicl::Atom<std::string> name    { Name{"name"}};
+    fhicl::Atom<std::string> type    { Name{"type"}};
+    fhicl::Atom<std::string> start   { Name{"start"}};
+    fhicl::Atom<std::string> end     { Name{"end"}};
+    fhicl::Atom<double>      fraction{ Name{"fraction"}};
+  };
+
+  Run(); // Needed to default construct an  std::vector<Run>?
+
+
+  Run( Config const& conf );
 
   RunType        type() const      { return _type;      }
   TDatime const& startDate() const { return _startDate; }

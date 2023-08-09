@@ -31,4 +31,10 @@ uint32_t daysPerMonth ( uint32_t month, uint32_t year );
 // Return 3 letter month abbreviation, base 0 indexing.
 std::string monthShortName( uint32_t month);
 
+// Append midnight to a date string
+std::string dayStart( std::string const& date);
+
+// Append one second before midnight to a date string
+std::string dayEnd( std::string const& date);
+
 #endif

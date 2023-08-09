@@ -30,3 +30,11 @@ std::string monthShortName ( uint32_t m ){
   static std::array<std::string,12> names{"Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
   return names.at(m);
 }
+
+std::string dayStart( std::string const& date){
+  return date + " 00:00:00";
+}
+
+std::string dayEnd( std::string const& date){
+  return date + " 23:59:59";
+}
