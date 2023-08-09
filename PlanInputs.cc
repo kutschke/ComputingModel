@@ -23,13 +23,13 @@ namespace {
   using Comment = fhicl::Comment;
 
   struct PlanDuration {
-    fhicl::Atom<std::string> start{ Name{"start"}};
-    fhicl::Atom<std::string> end{ Name{"end"}};
+    fhicl::Atom<std::string> start{ Name{"start"}, Comment{"Start date of the plan."}};
+    fhicl::Atom<std::string> end{ Name{"end"},     Comment{"End date of the plan."}};
   };
 
   struct Config{
     fhicl::Table<PlanDuration> planDuration {Name("PlanDuration")};
-    fhicl::Sequence<fhicl::Table<Run::Config>> runs {Name("Runs")};
+    fhicl::Sequence<fhicl::Table<Run::Config>> runs {Name("Runs"),Comment{"A list of all of the run periods in the model."}};
   };
 
 }

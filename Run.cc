@@ -10,11 +10,13 @@ using std::endl;
 Run::Run(){
 }
 
-Run::Run( Config const& conf){
-  _type = RunType( conf.type());
+Run::Run( Config const& conf):
+  _comment(conf.comment()),
+  _fraction(conf.fraction()),
+  _type(RunType( conf.type()))
+{
   _startDate.Set( dayStart(conf.start()).c_str() );
   _endDate.Set(   dayEnd(conf.end()    ).c_str() );
-  _fraction = conf.fraction();
 }
 
 std::ostream& operator<<(std::ostream& os, const Run& r ){
@@ -22,5 +24,8 @@ std::ostream& operator<<(std::ostream& os, const Run& r ){
      << "  Start: "    << r.startDate().AsString()
      << "  End: "      << r.endDate().AsString()
      << "  Fraction: " << r.fraction();
+  if ( !r.comment().empty() ){
+    os << "\n   " << r.comment();
+  }
   return os;
 }

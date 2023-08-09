@@ -93,7 +93,6 @@ void Plan::buildMonths(){
       cout << "Weird ... " << endl;
     }
   }
-  cout << "Size: " << _months.size() << endl;
 
 }
 

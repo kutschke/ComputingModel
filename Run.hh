@@ -18,11 +18,12 @@ public:
   struct Config {
     using Name = fhicl::Name;
     using Comment = fhicl::Comment;
-    fhicl::Atom<std::string> name    { Name{"name"}};
-    fhicl::Atom<std::string> type    { Name{"type"}};
-    fhicl::Atom<std::string> start   { Name{"start"}};
-    fhicl::Atom<std::string> end     { Name{"end"}};
-    fhicl::Atom<double>      fraction{ Name{"fraction"}};
+    fhicl::Atom<std::string> name    { Name{"name"},     Comment{"A name for this running period."}};
+    fhicl::Atom<std::string> type    { Name{"type"},     Comment{"A name from the enum in RunType.hh."} };
+    fhicl::Atom<std::string> start   { Name{"start"},    Comment{"Starting date in format yyyy-mm-dd"}};
+    fhicl::Atom<std::string> end     { Name{"end"},      Comment{"Ending date in format yyyy-mm-dd"}};
+    fhicl::Atom<std::string> comment { Name{"comment"},  Comment{"A human meaningfull description of this run period."}};
+    fhicl::Atom<double>      fraction{ Name{"fraction"}, Comment{"Fraction of time that is live."}};
   };
 
   Run(); // Needed to default construct an  std::vector<Run>?
@@ -30,16 +31,18 @@ public:
 
   Run( Config const& conf );
 
-  RunType        type() const      { return _type;      }
-  TDatime const& startDate() const { return _startDate; }
-  TDatime const& endDate() const   { return _endDate;   }
-  float          fraction() const  { return _fraction;  }
+  RunType            type()      const { return _type;      }
+  TDatime const&     startDate() const { return _startDate; }
+  TDatime const&     endDate()   const { return _endDate;   }
+  float              fraction()  const { return _fraction;  }
+  std::string const& comment()   const {return _comment;    }
 
 private:
-  RunType _type;
-  TDatime _startDate; // Whole day; no support for fractional days
-  TDatime _endDate;   // Whole day; no support for fractional days
-  float   _fraction;  // Fraction of nominal running time.
+  TDatime     _startDate; // Whole day; no support for fractional days
+  TDatime     _endDate;   // Whole day; no support for fractional days
+  std::string _comment;   // Descriptive only
+  float       _fraction;  // Fraction of time spent running.
+  RunType     _type;      // From the enum.
 
 };
 

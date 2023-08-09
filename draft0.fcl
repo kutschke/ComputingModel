@@ -15,27 +15,31 @@ Runs : [
     start    : "2024-02-01"
     end      : "2024-06-30"
     fraction : 0.9
+    comment  : "Calorimeter in Mu2e Hall taking cosmics"
  },
  {
     name     : "cosmicExtracted2"
     type     : cosmicExtracted
     start    : "2024-07-01"
     end      : "2024-08-31"
-    fraction : 0.4
+    fraction : 0.25
+    comment  : "Calorimeter+Tracker+CRV in extracted position early commissioning"
  },
  {
     name     : "cosmicExtracted3"
     type     : cosmicExtracted
     start    : "2024-09-01"
     end      : "2025-02-15"
-    fraction : 0.4
+    fraction : 0.5
+    comment  : "Cosmic Ray test run ending in Detector KPP"
  },
  {
     name     : "cosmicExtracted4"
     type     : cosmicExtracted
-    start    : "2024-09-01"
-    end      : "2025-02-15"
-    fraction : 0.4
+    start    : "2025-02-06"
+    end      : "2025-12-31"
+    fraction : 0.8
+    comment  : "Cosmic Ray running between Detector KPP and insertion into Magnet"
  }
 
 ]
