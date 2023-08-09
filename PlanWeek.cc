@@ -36,10 +36,9 @@ PlanWeek::PlanWeek( TDatime const& t0, TDatime const& planEnd):
   _duration = _tend.Convert()-_t0.Convert()+1;
   _durationInDays = double(_duration)/double(constants::secondsPerDay);
 
+  /*
   auto dayTest = dayOfWeek(_tend);
   auto hourTest = _tend.GetHour();
-
-  /*
   cout << "Week: " <<  _t0.AsString() << "   " << _tend.AsString() << " :  " << dayTest << "   " <<  hourTest << "  : "  << day << " " << _ndays << " : " << _durationInDays
        << " " << _springDST
        << " " << _fallDST

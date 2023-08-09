@@ -27,6 +27,6 @@ uint32_t daysPerMonth ( uint32_t month, uint32_t year ){
 }
 
 std::string monthShortName ( uint32_t m ){
-  static array<std::string,12> names{"Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+  static std::array<std::string,12> names{"Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
   return names.at(m);
 }

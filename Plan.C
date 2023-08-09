@@ -21,7 +21,7 @@
 #include "Plan.cc+"
 
   // Set inputs
-  PlanInputs inp;
+  PlanInputs inp("draft0.fcl");
   inp.print();
 
   // Build the model.

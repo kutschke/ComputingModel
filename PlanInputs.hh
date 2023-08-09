@@ -8,8 +8,8 @@
 struct PlanInputs{
 
 public:
-  PlanInputs();
-  //PlanInputs( std::string filename );
+  //PlanInputs();
+  PlanInputs( std::string const& filename );
 
   TDatime startDate;
   TDatime endDate;

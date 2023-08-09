@@ -9,7 +9,9 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-PlanInputs::PlanInputs(){
+PlanInputs::PlanInputs( std::string const& fileName ){
+  cout << "PlanInputs filename: " << fileName << endl;
+
   startDate.Set("2024-01-01 00:00:00");
   endDate.Set  ("2037-12-31 23:59:59");
 
