@@ -1,6 +1,6 @@
 #include "PlanInputs.hh"
 #include "DurationCalculator.hh"
-#include "Run.hh"
+#include "RunPeriod.hh"
 #include "dateHelpers.hh"
 
 #include "cetlib/filepath_maker.h"
@@ -29,7 +29,7 @@ namespace {
 
   struct Config{
     fhicl::Table<PlanDuration> planDuration {Name("PlanDuration")};
-    fhicl::Sequence<fhicl::Table<Run::Config>> runs {Name("Runs"),Comment{"A list of all of the run periods in the model."}};
+    fhicl::Sequence<fhicl::Table<RunPeriod::Config>> runs {Name("RunPeriods"),Comment{"A list of all of the run periods in the model."}};
   };
 
 }
@@ -47,9 +47,9 @@ PlanInputs::PlanInputs( std::string const& fileName ){
   startDate.Set( dayStart(start).c_str());
   endDate.Set  ( dayEnd(end).c_str());
 
-  std::vector<Run::Config> runs = config().runs();
+  std::vector<RunPeriod::Config> runs = config().runs();
 
-  for ( Run::Config& c : runs ){
+  for ( RunPeriod::Config& c : runs ){
     _runs.emplace_back(c);
   }
 
@@ -65,7 +65,7 @@ void PlanInputs::print() const{
   cout << "Duration in months:   " << planDurationInMonths()   << endl;
   cout << "Duration in quarters: " << planDurationInQuarters() << endl;
 
-  cout << "\nRunning Periods: " << endl;
+  cout << "\nRun Periods: " << endl;
   for ( auto const& r : _runs ){
     cout << " " << r << endl;
   }

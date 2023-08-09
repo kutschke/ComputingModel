@@ -8,7 +8,7 @@ PlanDuration: {
 }
 
 # List all of the running periods
-Runs : [
+RunPeriods : [
  {
     name     : "cosmicExtracted1"
     type     : cosmicCalOnly

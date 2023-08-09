@@ -9,7 +9,7 @@ LIBS= -L$(FHICLCPP_LIB) -L$(CETLIB_LIB) -L$(CETLIB_EXCEPT_LIB) -L$(ROOTSYS)/lib 
 
 all: main
 
-%.o: %.cc $(INCSRCS)
+%.o: %.cc
 	g++ -Wall -Wpedantic -Werror -c -std=c++17 $(INCS) $< -o $@
 
 main: $(OBJS)

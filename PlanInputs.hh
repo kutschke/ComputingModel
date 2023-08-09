@@ -2,7 +2,7 @@
 #define PlanInputs_hh
 
 #include "DurationCalculator.hh"
-#include "Run.hh"
+#include "RunPeriod.hh"
 
 #include "TDatime.h"
 
@@ -16,7 +16,7 @@ public:
 
   DurationCalculator duration;
 
-  std::vector<Run> const& runs() const { return _runs; }
+  std::vector<RunPeriod> const& runs() const { return _runs; }
 
   float planDurationInDays() const;
   float planDurationInWeeks() const;
@@ -27,7 +27,7 @@ public:
 
 private:
 
-  std::vector<Run> _runs;
+  std::vector<RunPeriod> _runs;
 
   void goodInputsOrThrow();
 

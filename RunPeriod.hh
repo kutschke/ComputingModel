@@ -1,5 +1,5 @@
-#ifndef Run_hh
-#define Run_hh
+#ifndef RunPeriod_hh
+#define RunPeriod_hh
 
 #include "TDatime.h"
 #include "RunType.hh"
@@ -10,11 +10,11 @@
 #include <iosfwd>
 #include <string>
 
-class Run{
+class RunPeriod{
 
 public:
 
-  // Runtime configuration
+  // RunPeriodtime configuration
   struct Config {
     using Name = fhicl::Name;
     using Comment = fhicl::Comment;
@@ -26,16 +26,16 @@ public:
     fhicl::Atom<double>      fraction{ Name{"fraction"}, Comment{"Fraction of time that is live."}};
   };
 
-  Run(); // Needed to default construct an  std::vector<Run>?
+  RunPeriod(); // Needed to default construct an  std::vector<RunPeriod>?
 
 
-  Run( Config const& conf );
+  RunPeriod( Config const& conf );
 
   RunType            type()      const { return _type;      }
   TDatime const&     startDate() const { return _startDate; }
   TDatime const&     endDate()   const { return _endDate;   }
   float              fraction()  const { return _fraction;  }
-  std::string const& comment()   const {return _comment;    }
+  std::string const& comment()   const { return _comment;   }
 
 private:
   TDatime     _startDate; // Whole day; no support for fractional days
@@ -46,6 +46,6 @@ private:
 
 };
 
-std::ostream& operator<<(std::ostream& os, const Run& pw );
+std::ostream& operator<<(std::ostream& os, const RunPeriod& pw );
 
 #endif

@@ -2,7 +2,6 @@
 
 #include "constants.hh"
 #include "dateHelpers.hh"
-#include "Run.hh"
 
 #include <cmath>
 #include <iostream>
@@ -60,10 +59,6 @@ Plan::Plan( PlanInputs const& inp):_inp(inp){
 
   //cout << "\n\n" << endl;
   //printAllMonths( true );
-
-  Run r0;
-  cout << "Run: " << r0 << endl;
-
 
 }
 
