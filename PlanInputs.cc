@@ -1,5 +1,6 @@
 #include "PlanInputs.hh"
 #include "DurationCalculator.hh"
+#include "RunParameters.hh"
 #include "RunPeriod.hh"
 #include "dateHelpers.hh"
 
@@ -36,6 +37,7 @@ namespace {
     fhicl::Table<VerbosityConfig>  verbosityConfig{Name("verbosity")};
     fhicl::Table<PlanDuration>      planDuration {Name("PlanDuration")};
     fhicl::Sequence<fhicl::Table<RunPeriod::Config>> runs {Name("RunPeriods"),Comment{"A list of all of the run periods in the model."}};
+    fhicl::Sequence<fhicl::Table<RunParameters::Config>> runParameters {Name("RunParameters"),Comment{"Parameters for each type of run: 1BB, 2BB, Cosmic."}};
   };
 
 }
@@ -62,6 +64,15 @@ PlanInputs::PlanInputs( std::string const& fileName ){
   for ( RunPeriod::Config& c : runs ){
     _runs.emplace_back(c);
   }
+
+  std::vector<RunParameters::Config> runParameters = config().runParameters();
+
+  for ( RunParameters::Config const& c : runParameters ){
+    cout << "Check: " << c.type() << endl;
+    _runParameters.emplace_back(c);
+  }
+  cout << _runParameters.size() << endl;
+  cout << _runParameters.front() << endl;
 
   goodInputsOrThrow();
 
@@ -210,6 +221,5 @@ void PlanInputs::goodInputsOrThrow(){
   if ( nBad != 0 ){
     throw std::domain_error("Non-contiguous running periods.");
   }
-
 
 }

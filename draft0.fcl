@@ -221,3 +221,13 @@ RunPeriods : [
  }
 
 ]
+
+RunParameters : [
+ {
+    type             : bb1
+    eventSize        : 400
+    eventsPerDay     : 11.75E9
+    triggerRejection : 400.
+    comment          : "test"
+ }
+]

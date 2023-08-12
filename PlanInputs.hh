@@ -2,6 +2,7 @@
 #define PlanInputs_hh
 
 #include "DurationCalculator.hh"
+#include "RunParameters.hh"
 #include "RunPeriod.hh"
 
 #include "TDatime.h"
@@ -34,7 +35,8 @@ public:
 
 private:
 
-  std::vector<RunPeriod> _runs;
+  std::vector<RunPeriod>     _runs;
+  std::vector<RunParameters> _runParameters;
 
   void goodInputsOrThrow();
 
