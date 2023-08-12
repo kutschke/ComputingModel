@@ -78,11 +78,10 @@ void PlanInputs::print() const{
   cout << "   inputs:            " << verbosity.inputs         << endl;
   cout << "   buildPlan:         " << verbosity.buildPlan      << endl;
 
-  cout << "\nRun Periods: " << endl;
+  cout << "\nNumber of run periods: " << _runs.size() << endl;
   for ( auto const& r : _runs ){
     cout << " " << r << "\n" << endl;
   }
-
 
 }
 
@@ -175,5 +174,42 @@ void PlanInputs::goodInputsOrThrow(){
          << endl;
     throw std::domain_error("Exit.  Illegal end date.");
   }
+
+  if ( _runs.empty() ){
+    throw std::domain_error("No running periods specfiied.");
+  }
+
+  // Run periods must be complete and contiguous.
+  if ( _runs.front().startDate().Convert() != startDate.Convert() ){
+    cerr << "First run period does not start at start date of the plan."
+         << "\n  Start of first run period: " << _runs.front().startDate().AsString()
+         << "\n  Start of the plan:         " << startDate.AsString()
+         << endl;
+    throw std::domain_error("First run period has improper start date.");
+  }
+
+  if ( _runs.back().endDate().Convert() != endDate.Convert() ){
+    cerr << "Last run period does not end at the end date of the plan."
+         << "\n  End of last run period: " << _runs.back().endDate().AsString()
+         << "\n  End of the plan:        " << endDate.AsString()
+         << endl;
+    throw std::domain_error("Last run period has improper end date.");
+  }
+
+  unsigned nBad{0};
+  for ( size_t i=1; i<_runs.size(); ++i ){
+    auto delta = _runs.at(i).startDate().Convert() - _runs.at(i-1).endDate().Convert();
+    if ( delta != 1 ){
+      ++nBad;
+      cerr << "Running period " << i << " is not contiguous with it's predecessor."
+           << "\nRun period: " << i-1 << "\n" <<  _runs.at(i-1)
+           << "\nRun period: " << i   << "\n" <<  _runs.at(i)
+           << endl;
+    }
+  }
+  if ( nBad != 0 ){
+    throw std::domain_error("Non-contiguous running periods.");
+  }
+
 
 }

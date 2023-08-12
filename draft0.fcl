@@ -21,6 +21,14 @@ PlanDuration: {
 # List all of the running periods
 RunPeriods : [
  {
+    name     : "PreRunning"
+    type     : noData
+    start    : "2024-01-01"
+    end      : "2024-01-31"
+    fraction : 0
+    comment  : "Detectors not yet ready; no data taking."
+ },
+ {
     name     : "cosmicExtracted1"
     type     : cosmicCalOnly
     start    : "2024-02-01"
@@ -47,7 +55,7 @@ RunPeriods : [
  {
     name     : "cosmicExtracted4"
     type     : cosmicExtracted
-    start    : "2025-02-06"
+    start    : "2025-02-16"
     end      : "2025-12-31"
     fraction : 0.8
     comment  : "Cosmic Ray running between Detector KPP and insertion into Magnet"
@@ -95,7 +103,7 @@ RunPeriods : [
     name     : "Run1b"
     type     : bb2
     start    : "2026-10-16"
-    end      : "2027-11-15"
+    end      : "2026-11-15"
     fraction : 0.5
     comment  : "Run 1b; commmission 2BB running"
  },
@@ -105,15 +113,111 @@ RunPeriods : [
     start    : "2026-11-16"
     end      : "2027-01-15"
     fraction : 0.9
-    comment  : "Run 1c; 2BB1"
+    comment  : "Run 1c; 2BB"
  },
  {
     name     : "LongShutdown"
     type     : noData
-    start    : "2026-11-16"
-    end      : "2027-01-15"
+    start    : "2027-01-16"
+    end      : "2029-01-14"
+    fraction : 0.
+    comment  : "Long shutdown"
+ },
+ {
+    name     : "Run 2a"
+    type     : bb2
+    start    : "2029-01-15"
+    end      : "2029-02-11"
+    fraction : 0.5
+    comment  : "Run 2a; 2BB commissioning"
+ },
+ {
+    name     : "Run 2b"
+    type     : bb2
+    start    : "2029-02-12"
+    end      : "2029-07-15"
     fraction : 0.9
-    comment  : "Run 1c; 2BB1"
+    comment  : "Run 2a; 2BB "
+ },
+ {
+    name     : "SummerShutdown2029"
+    type     : noData
+    start    : "2029-07-16"
+    end      : "2029-09-30"
+    fraction : 0.
+    comment  : "Summer shutdown 2029"
+ },
+ {
+    name     : "Run 2c"
+    type     : bb2
+    start    : "2029-10-01"
+    end      : "2029-10-31"
+    fraction : 0.5
+    comment  : "Run 2c; 2BB commissioning"
+ },
+ {
+    name     : "Run 2d"
+    type     : bb2
+    start    : "2029-11-01"
+    end      : "2030-07-14"
+    fraction : 0.5
+    comment  : "Run 2d; 2BB"
+ },
+ {
+    name     : "SummerShutdown2030"
+    type     : noData
+    start    : "2030-07-15"
+    end      : "2030-09-30"
+    fraction : 0.
+    comment  : "Summer shutdown 2030"
+ },
+ {
+    name     : "Run 2e"
+    type     : bb2
+    start    : "2030-10-01"
+    end      : "2030-10-31"
+    fraction : 0.5
+    comment  : "Run 2e; 2BB commissioning"
+ },
+ {
+    name     : "Run 2f"
+    type     : bb2
+    start    : "2030-11-01"
+    end      : "2031-07-13"
+    fraction : 0.9
+    comment  : "Run 2f; 2BB"
+ },
+ {
+    name     : "SummerShutdown2031"
+    type     : noData
+    start    : "2031-07-14"
+    end      : "2031-09-30"
+    fraction : 0.
+    comment  : "Summer shutdown 2030"
+ },
+ {
+    name     : "Run 2g"
+    type     : bb2
+    start    : "2031-10-01"
+    end      : "2031-10-31"
+    fraction : 0.5
+    comment  : "Run 2g; 2BB commissioning"
+ },
+ {
+    name     : "Run 2h"
+    type     : bb2
+    start    : "2031-11-01"
+    end      : "2032-07-11"
+    fraction : 0.9
+    comment  : "Run 2h; 2BB"
+ },
+ {
+    name     : "Analysis"
+    type     : noData
+    start    : "2032-07-12"
+    end      : "2037-12-31"
+    fraction : 0.
+    comment  : "Post data analysis"
  }
 
 ]
