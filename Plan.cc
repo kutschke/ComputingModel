@@ -13,6 +13,21 @@ using std::endl;
 
 Plan::Plan( PlanInputs const& inp):_inp(inp){
 
+  buildWeeks();
+  buildMonths();
+
+  printWeeksSummary();
+  printMonthsSummary( true );
+
+  //cout << "\n\n" << endl;
+  //printAllWeeks();
+
+  //cout << "\n\n" << endl;
+  //printAllMonths( true );
+
+}
+
+void Plan::buildWeeks(){
   // The number of seconds since the epoch at the end of the plan.
   auto const planEndConvert = _inp.endDate.Convert();
 
@@ -22,8 +37,11 @@ Plan::Plan( PlanInputs const& inp):_inp(inp){
 
   // Self consistency check.
   if ( last > planEndConvert ){
-    cout << "Weird .... " << endl;
-    exit(2);
+    cerr << "First week ends after the end of plan: " << endl;
+    cerr << "   Start of first week: " << _weeks.back().t0().AsString() << endl;
+    cerr << "   End of first week:   " << _weeks.back().tend().AsString() << endl;
+    cerr << "   End of plan:         " << _inp.endDate.AsString() << endl;
+    throw std::logic_error("First week ends after the end of the plan.");
   }
 
   // Create the remaining weeks
@@ -48,18 +66,6 @@ Plan::Plan( PlanInputs const& inp):_inp(inp){
     cerr << "End date of plan:       " << _inp.endDate.AsString()                        << endl;
     throw std::logic_error("Exit.  Month table was not built properly.");
   }
-
-  buildMonths();
-
-  printWeeksSummary();
-  printMonthsSummary( true );
-
-  //cout << "\n\n" << endl;
-  //printAllWeeks();
-
-  //cout << "\n\n" << endl;
-  //printAllMonths( true );
-
 }
 
 void Plan::buildMonths(){
@@ -70,7 +76,6 @@ void Plan::buildMonths(){
   // This is a rough estimate and will usually be a little high.
   // I uses a constant 30 day month.
   int nMonths = std::ceil(_inp.planDurationInMonths());
-  //cout << "Months: " << nMonths << endl;
 
   // Build the first month
   _months.emplace_back( _inp.startDate, planEndConvert, _weeks );
@@ -85,7 +90,11 @@ void Plan::buildMonths(){
       break;
     }
     if ( last > planEndConvert ){
-      cout << "Weird ... " << endl;
+      cerr << "Month ends after the end of plan: " << endl;
+      cerr << "   Start of the month:  " << _months.back().t0().AsString() << endl;
+      cerr << "   End of the  month:   " << _months.back().tend().AsString() << endl;
+      cerr << "   End of plan:         " << _inp.endDate.AsString() << endl;
+      throw std::logic_error("Month ends after the end of the plan.");
     }
   }
 

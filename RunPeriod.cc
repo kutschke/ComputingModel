@@ -25,7 +25,7 @@ std::ostream& operator<<(std::ostream& os, const RunPeriod& r ){
      << "  End: "      << r.endDate().AsString()
      << "  Fraction: " << r.fraction();
   if ( !r.comment().empty() ){
-    os << "\n   " << r.comment();
+    os << "\n        " << r.comment();
   }
   return os;
 }

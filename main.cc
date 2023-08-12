@@ -1,10 +1,19 @@
 #include "PlanInputs.hh"
 #include "Plan.hh"
 
-int main() {
+#include <iostream>
 
-  // Read the inputs
-  PlanInputs inp("draft0.fcl");
+int main( int nargs, char** argc) {
+
+  // Required argument is the name of the input file.
+  if ( nargs != 2 ){
+    std::cerr << "Must supply the name of a configuration file as an argument." << std::endl;
+    return 1;
+  }
+  std::string configFile(argc[1]);
+
+  // Read the input file.
+  PlanInputs inp(configFile);
   inp.print();
 
   // Build the model.

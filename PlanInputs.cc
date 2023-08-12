@@ -22,21 +22,28 @@ namespace {
   using Name = fhicl::Name;
   using Comment = fhicl::Comment;
 
+  struct VerbosityConfig{
+    fhicl::Atom<unsigned> inputs{ Name{"inputs"}, Comment{"Control verboisty of printout when reading the input file."}};
+    fhicl::Atom<unsigned> buildPlan{ Name{"buildPlan"}, Comment{"Control verboisty of printout when constructing the plan."}};
+  };
+
   struct PlanDuration {
     fhicl::Atom<std::string> start{ Name{"start"}, Comment{"Start date of the plan."}};
     fhicl::Atom<std::string> end{ Name{"end"},     Comment{"End date of the plan."}};
   };
 
   struct Config{
-    fhicl::Table<PlanDuration> planDuration {Name("PlanDuration")};
+    fhicl::Table<VerbosityConfig>  verbosityConfig{Name("verbosity")};
+    fhicl::Table<PlanDuration>      planDuration {Name("PlanDuration")};
     fhicl::Sequence<fhicl::Table<RunPeriod::Config>> runs {Name("RunPeriods"),Comment{"A list of all of the run periods in the model."}};
   };
 
 }
 
 PlanInputs::PlanInputs( std::string const& fileName ){
-  cout << "PlanInputs filename: " << fileName << endl;
 
+  // Create the configuration object from the input configuation file.
+  cout << "PlanInputs filename: " << fileName << endl;
   cet::filepath_lookup policy("FHICL_FILE_PATH");
   fhicl::ParameterSet pSet{fhicl::ParameterSet::make(fileName, policy)};
   fhicl::Table<Config> config{pSet};
@@ -46,6 +53,9 @@ PlanInputs::PlanInputs( std::string const& fileName ){
 
   startDate.Set( dayStart(start).c_str());
   endDate.Set  ( dayEnd(end).c_str());
+
+  verbosity.inputs    = config().verbosityConfig().inputs();
+  verbosity.buildPlan = config().verbosityConfig().buildPlan();
 
   std::vector<RunPeriod::Config> runs = config().runs();
 
@@ -64,10 +74,13 @@ void PlanInputs::print() const{
   cout << "Duration in weeks:    " << planDurationInWeeks()    << endl;
   cout << "Duration in months:   " << planDurationInMonths()   << endl;
   cout << "Duration in quarters: " << planDurationInQuarters() << endl;
+  cout << "Verbosity levels:"      << endl;
+  cout << "   inputs:            " << verbosity.inputs         << endl;
+  cout << "   buildPlan:         " << verbosity.buildPlan      << endl;
 
   cout << "\nRun Periods: " << endl;
   for ( auto const& r : _runs ){
-    cout << " " << r << endl;
+    cout << " " << r << "\n" << endl;
   }
 
 

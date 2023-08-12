@@ -10,7 +10,7 @@
 class RunTypeDetail{
 public:
 
-  enum enum_type { unknown, cosmicCalOnly, cosmicExtracted, cosmicNoField, cosmic, bb1, bb2 };
+  enum enum_type { unknown, noData, cosmicCalOnly, cosmicExtracted, cosmicNoField, cosmic, bb1, bb2 };
 
   static std::string const& typeName();
 

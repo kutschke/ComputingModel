@@ -2,6 +2,17 @@
 # Working draft of inputs to the Mu2e computing model.
 # Using during development.
 #
+
+# Control the level of debug/informational printout
+# 0 = minimal; higher number means more printout.
+verbosity : {
+ inputs    : 1
+ buildPlan : 1
+}
+
+
+# Duration of the full plan; distinct from summaries
+# that might be requested for shorter periods.
 PlanDuration: {
   start : "2024-01-01"
   end   : "2037-12-31"
@@ -40,6 +51,69 @@ RunPeriods : [
     end      : "2025-12-31"
     fraction : 0.8
     comment  : "Cosmic Ray running between Detector KPP and insertion into Magnet"
+ },
+ {  name     : "Insertion"
+    type     : noData
+    start    : "2026-01-01"
+    end      : "2026-01-31"
+    fraction : 0
+    comment  : "No data taking; insertion of detector into magnet"
+ },
+ {
+    name     : "cosmicNofield01"
+    type     : cosmicNoField
+    start    : "2026-02-01"
+    end      : "2026-02-14"
+    fraction : 0.4
+    comment  : "Cosmic Ray running inserted into magnet; field off"
+ },
+ {
+    name     : "Commission01"
+    type     : cosmic
+    start    : "2026-02-15"
+    end      : "2026-06-30"
+    fraction : 0.4
+    comment  : "Cosmic Ray running; inserted position; field on; no beam"
+ },
+ {
+    name     : "Commission02"
+    type     : bb1
+    start    : "2026-07-01"
+    end      : "2026-08-31"
+    fraction : 0.5
+    comment  : "Cosmic Ray running; inserted position; field on; commissioning with beam"
+ },
+ {
+    name     : "Run1a"
+    type     : bb1
+    start    : "2026-09-01"
+    end      : "2026-10-15"
+    fraction : 0.9
+    comment  : "Run 1; 1BB"
+ },
+ {
+    name     : "Run1b"
+    type     : bb2
+    start    : "2026-10-16"
+    end      : "2027-11-15"
+    fraction : 0.5
+    comment  : "Run 1b; commmission 2BB running"
+ },
+ {
+    name     : "Run1c"
+    type     : bb2
+    start    : "2026-11-16"
+    end      : "2027-01-15"
+    fraction : 0.9
+    comment  : "Run 1c; 2BB1"
+ },
+ {
+    name     : "LongShutdown"
+    type     : noData
+    start    : "2026-11-16"
+    end      : "2027-01-15"
+    fraction : 0.9
+    comment  : "Run 1c; 2BB1"
  }
 
 ]

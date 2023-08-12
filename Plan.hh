@@ -26,6 +26,7 @@ private:
   std::vector<PlanWeek>  _weeks;
   std::vector<PlanMonth> _months;
 
+  void buildWeeks();
   void buildMonths();
 };
 

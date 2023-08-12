@@ -9,10 +9,17 @@
 struct PlanInputs{
 
 public:
+
+  struct Verbosity{
+    unsigned inputs    = 0;
+    unsigned buildPlan = 0;
+  };
+
   PlanInputs( std::string const& filename );
 
-  TDatime startDate;
-  TDatime endDate;
+  Verbosity verbosity;
+  TDatime   startDate;
+  TDatime   endDate;
 
   DurationCalculator duration;
 
