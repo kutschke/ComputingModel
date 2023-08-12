@@ -93,14 +93,20 @@ void PlanInputs::print() const{
   cout << "   inputs:            " << verbosity.inputs         << endl;
   cout << "   buildPlan:         " << verbosity.buildPlan      << endl;
 
-  cout << "\nNumber of run periods: " << _runs.size() << endl;
-  for ( auto const& r : _runs ){
-    cout << " " << r << "\n" << endl;
+  if ( verbosity.inputs <= 3 ){
+    cout << "Number of run periods: " << _runs.size() << endl;
+  } else if ( verbosity.inputs >  3 ) {
+    for ( auto const& r : _runs ){
+      cout << " " << r << "\n" << endl;
+    }
   }
 
-  cout << "\nNumber of sets of run parameters: " << _runParameters.size() << endl;
-  for ( auto const& i : _runParameters ){
-    cout << " " << i.second << "\n" << endl;
+  if ( verbosity.inputs <= 2 ){
+    cout << "Number of sets of run parameters: " << _runParameters.size() << endl;
+  } else if ( verbosity.inputs > 2 ) {
+    for ( auto const& i : _runParameters ){
+      cout << " " << i.second << "\n" << endl;
+    }
   }
 
 }

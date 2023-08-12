@@ -7,7 +7,7 @@
 # 0 = minimal; higher number means more printout.
 verbosity : {
  inputs    : 1
- buildPlan : 1
+ buildPlan : 0
 }
 
 

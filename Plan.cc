@@ -16,14 +16,21 @@ Plan::Plan( PlanInputs const& inp):_inp(inp){
   buildWeeks();
   buildMonths();
 
-  printWeeksSummary();
-  printMonthsSummary( true );
+  if ( _inp.verbosity.buildPlan == 0 ){
+    cout << "Number of weeks:  " << _weeks.size()  << endl;
+    cout << "Number of months: " << _months.size() << endl;
 
-  //cout << "\n\n" << endl;
-  //printAllWeeks();
+  } else if ( _inp.verbosity.buildPlan > 0 && _inp.verbosity.buildPlan < 2 ){
+    printWeeksSummary();
+    printMonthsSummary( true );
 
-  //cout << "\n\n" << endl;
-  //printAllMonths( true );
+  } else if ( _inp.verbosity.buildPlan >= 2 ){
+    cout << "\n\n" << endl;
+    printAllWeeks();
+
+    cout << "\n\n" << endl;
+    printAllMonths( true );
+  }
 
 }
 
