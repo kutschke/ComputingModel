@@ -15,13 +15,13 @@ std::map<RunTypeDetail::enum_type,std::string> const& RunTypeDetail::names(){
 
   if ( nam.empty() ){
     nam[unknown]          = "unknown";
-    nam[noData]           = "noData";
-    nam[cosmicCalOnly]    = "cosmicCalOnly";
-    nam[cosmicExtracted]  = "cosmicExtracted";
-    nam[cosmicNoField]    = "cosmicNoField";
-    nam[cosmic]           = "cosmic";
     nam[bb1]              = "bb1";
     nam[bb2]              = "bb2";
+    nam[cosmic]           = "cosmic";
+    nam[cosmicNoField]    = "cosmicNoField";
+    nam[cosmicExtracted]  = "cosmicExtracted";
+    nam[cosmicCalOnly]    = "cosmicCalOnly";
+    nam[noData]           = "noData";
     //nam[] = "";
   }
 

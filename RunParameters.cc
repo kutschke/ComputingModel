@@ -1,10 +1,11 @@
 #include "RunParameters.hh"
+#include "constants.hh"
 
 RunParameters::RunParameters(){
 }
 
 RunParameters::RunParameters( Config const& conf):
-  _eventSize(conf.eventSize()),
+  _eventSize(conf.eventSize()*constants::kBToTB),
   _eventsPerDay(conf.eventsPerDay()),
   _triggerRejection(conf.triggerRejection()),
   _comment(conf.comment()),
@@ -14,7 +15,7 @@ RunParameters::RunParameters( Config const& conf):
 
 std::ostream& operator<<(std::ostream& os, const RunParameters& r ){
   os << "Type: "                << r.type()
-     << "  Event size: "        << r.eventSize()
+     << "  Event size: "        << r.eventSize()*constants::TBTokB << " kB"
      << "  Events per day: "    << r.eventsPerDay()
      << "  Trigger rejection: " << r.triggerRejection();
   if ( !r.comment().empty() ){

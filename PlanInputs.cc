@@ -60,19 +60,23 @@ PlanInputs::PlanInputs( std::string const& fileName ){
   verbosity.buildPlan = config().verbosityConfig().buildPlan();
 
   std::vector<RunPeriod::Config> runs = config().runs();
-
-  for ( RunPeriod::Config& c : runs ){
+  for ( RunPeriod::Config const& c : runs ){
     _runs.emplace_back(c);
   }
 
   std::vector<RunParameters::Config> runParameters = config().runParameters();
-
   for ( RunParameters::Config const& c : runParameters ){
-    cout << "Check: " << c.type() << endl;
-    _runParameters.emplace_back(c);
+    RunType t = RunType(c.type());
+    if ( t == RunType::unknown ){
+      cerr << "Unsupported RunType: " << t << endl;
+      throw std::domain_error("Exit.  Invalid configuration.");
+    }
+    auto i = _runParameters.emplace(std::make_pair(t,c));
+    if ( !i.second ){
+      cerr << "Attempt to add a duplicate RunParameters object.  Type: " << t << endl;
+      throw std::domain_error("Exit.  Invalid configuration.");
+    }
   }
-  cout << _runParameters.size() << endl;
-  cout << _runParameters.front() << endl;
 
   goodInputsOrThrow();
 
@@ -92,6 +96,11 @@ void PlanInputs::print() const{
   cout << "\nNumber of run periods: " << _runs.size() << endl;
   for ( auto const& r : _runs ){
     cout << " " << r << "\n" << endl;
+  }
+
+  cout << "\nNumber of sets of run parameters: " << _runParameters.size() << endl;
+  for ( auto const& i : _runParameters ){
+    cout << " " << i.second << "\n" << endl;
   }
 
 }
@@ -220,6 +229,14 @@ void PlanInputs::goodInputsOrThrow(){
   }
   if ( nBad != 0 ){
     throw std::domain_error("Non-contiguous running periods.");
+  }
+
+  // Require RunParameters to be complete (excluding RunType::unknown).
+  if (  _runParameters.size() != RunType::size()-1 ){
+    cerr << "Missing specification of RunParameters "
+         << "\n Number of RunParameters in the input file:    " << _runParameters.size()
+         << "\n Number of values in enum (excluding unknown): " << RunType::size()-1;
+    throw std::domain_error("Missing values in the RunParameters stanza.");
   }
 
 }

@@ -225,9 +225,51 @@ RunPeriods : [
 RunParameters : [
  {
     type             : bb1
+    eventSize        : 200
+    eventsPerDay     : 6.46E9
+    triggerRejection : 400.
+    comment          : "1BB nominal running"
+ },
+ {
+    type             : bb2
     eventSize        : 400
     eventsPerDay     : 11.75E9
     triggerRejection : 400.
-    comment          : "test"
+    comment          : "2BB nominal running"
+ },
+ {
+    type             : noData
+    eventSize        : 0
+    eventsPerDay     : 0
+    triggerRejection : 1
+    comment          : "Not taking data"
+ },
+ {
+    type             : cosmicCalOnly
+    eventSize        : 20. // kB
+    eventsPerDay     : 1E6
+    triggerRejection : 1.
+    comment          : "Cosmic rays extracted; calorimeter only"
+ },
+ {
+    type             : cosmicExtracted
+    eventSize        : 40. // kB
+    eventsPerDay     : 2E6
+    triggerRejection : 1.
+    comment          : "Cosmic rays; extracted"
+ },
+ {
+    type             : cosmicNoField
+    eventSize        : 40. // kB
+    eventsPerDay     : 2E6
+    triggerRejection : 1.
+    comment          : "Cosmic rays; inserted; field off"
+ },
+ {
+    type             : cosmic
+    eventSize        : 40. // kB
+    eventsPerDay     : 4E6
+    triggerRejection : 1.
+    comment          : "Cosmic rays; inserted; field on"
  }
 ]

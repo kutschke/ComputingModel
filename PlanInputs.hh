@@ -7,6 +7,9 @@
 
 #include "TDatime.h"
 
+#include <vector>
+#include <map>
+
 struct PlanInputs{
 
 public:
@@ -35,8 +38,8 @@ public:
 
 private:
 
-  std::vector<RunPeriod>     _runs;
-  std::vector<RunParameters> _runParameters;
+  std::vector<RunPeriod>          _runs;
+  std::map<RunType,RunParameters> _runParameters;
 
   void goodInputsOrThrow();
 
