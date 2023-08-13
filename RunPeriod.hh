@@ -26,9 +26,6 @@ public:
     fhicl::Atom<double>      fraction{ Name{"fraction"}, Comment{"Fraction of time that is live."}};
   };
 
-  RunPeriod(); // Needed to default construct an  std::vector<RunPeriod>?
-
-
   RunPeriod( Config const& conf );
 
   RunType            type()      const { return _type;      }

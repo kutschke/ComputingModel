@@ -7,9 +7,6 @@ using std::cerr;
 using std::cout;
 using std::endl;
 
-RunPeriod::RunPeriod(){
-}
-
 RunPeriod::RunPeriod( Config const& conf):
   _comment(conf.comment()),
   _fraction(conf.fraction()),

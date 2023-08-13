@@ -25,9 +25,6 @@ public:
     fhicl::Atom<std::string> comment          { Name{"comment"},          Comment{"A human meaningfull description of this run period."}};
   };
 
-  RunParameters(); // Needed to default construct an  std::vector<RunParameters>?
-
-
   RunParameters( Config const& conf );
 
   RunType     type()             const { return _type;         }

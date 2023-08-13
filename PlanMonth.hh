@@ -18,9 +18,6 @@ class PlanMonth{
 
 public:
 
-  // Needed for std::vector
-  PlanMonth(){}
-
   PlanMonth( TDatime const& t0, TDatime const& planEnd, std::vector<PlanWeek> const& weeks);
 
   TDatime t0()   const { return _t0;  }

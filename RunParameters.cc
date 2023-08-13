@@ -1,9 +1,6 @@
 #include "RunParameters.hh"
 #include "constants.hh"
 
-RunParameters::RunParameters(){
-}
-
 RunParameters::RunParameters( Config const& conf):
   _eventSize(conf.eventSize()*constants::kBToTB),
   _eventsPerDay(conf.eventsPerDay()),

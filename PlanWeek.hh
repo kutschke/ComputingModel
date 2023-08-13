@@ -9,9 +9,6 @@ class PlanWeek{
 
 public:
 
-  // Needed for std::vector
-  PlanWeek(){}
-
   PlanWeek( TDatime const& t0, TDatime const& planEnd);
 
   TDatime t0()   const { return _t0;  }
