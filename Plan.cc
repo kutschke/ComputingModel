@@ -22,12 +22,11 @@ Plan::Plan( PlanInputs const& inp):_inp(inp){
 
   } else if ( _inp.verbosity.buildPlan > 0 && _inp.verbosity.buildPlan < 2 ){
     printWeeksSummary();
-    printMonthsSummary( true );
+    printMonthsSummary( _inp.verbosity.weeksInMonth  );
 
   } else if ( _inp.verbosity.buildPlan >= 2 ){
     printAllWeeks();
-
-    printAllMonths( true );
+    printAllMonths( _inp.verbosity.weeksInMonth );
   }
 
 }
@@ -130,11 +129,11 @@ void Plan::printWeeksSummary() const{
 
 void Plan::printMonthsSummary( bool printWeeks ) const{
   cout << "\nNumber of months: " << _months.size()  << endl;
-  cout << "First week:       " << _months.front() << endl;
+  cout << "First Month:       " << _months.front() << endl;
   if ( printWeeks ){
     _months.front().printWeeks( cout, "     " );
   }
-  cout << "Last  week:       " << _months.back()  << endl;
+  cout << "Last  Month:       " << _months.back()  << endl;
   if ( printWeeks ){
     _months.back().printWeeks( cout, "     " );
   }

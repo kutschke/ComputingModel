@@ -24,8 +24,9 @@ namespace {
   using Comment = fhicl::Comment;
 
   struct VerbosityConfig{
-    fhicl::Atom<unsigned> inputs{ Name{"inputs"}, Comment{"Control verboisty of printout when reading the input file."}};
-    fhicl::Atom<unsigned> buildPlan{ Name{"buildPlan"}, Comment{"Control verboisty of printout when constructing the plan."}};
+    fhicl::Atom<unsigned> inputs{       Name{"inputs"},       Comment{"Control verboisty of printout when reading the input file."}};
+    fhicl::Atom<unsigned> buildPlan{    Name{"buildPlan"},    Comment{"Control verboisty of printout when constructing the plan."}};
+    fhicl::Atom<bool>     weeksInMonth{ Name{"weeksInMonth"}, Comment{"For each month, include the printout of the weeks in the month."}};
   };
 
   struct PlanDuration {
@@ -56,8 +57,9 @@ PlanInputs::PlanInputs( std::string const& fileName ){
   startDate.Set( dayStart(start).c_str());
   endDate.Set  ( dayEnd(end).c_str());
 
-  verbosity.inputs    = config().verbosityConfig().inputs();
-  verbosity.buildPlan = config().verbosityConfig().buildPlan();
+  verbosity.inputs       = config().verbosityConfig().inputs();
+  verbosity.buildPlan    = config().verbosityConfig().buildPlan();
+  verbosity.weeksInMonth = config().verbosityConfig().weeksInMonth();
 
   std::vector<RunPeriod::Config> runs = config().runs();
   for ( RunPeriod::Config const& c : runs ){
@@ -92,6 +94,7 @@ void PlanInputs::print() const{
   cout << "Verbosity levels:"      << endl;
   cout << "   inputs:            " << verbosity.inputs         << endl;
   cout << "   buildPlan:         " << verbosity.buildPlan      << endl;
+  cout << "   weeksInMonth:      " << verbosity.weeksInMonth   << endl;
 
   if ( verbosity.inputs <= 3 ){
     cout << "Number of run periods: " << _runs.size() << endl;
