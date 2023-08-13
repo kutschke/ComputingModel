@@ -53,6 +53,7 @@ private:
   bool     _fallDST   = false;    // This month contains a fall back daylight savings transition
 
   void connectWeeks( std::vector<PlanWeek> const& ws );
+  void checkWeeks(   std::vector<PlanWeek> const& ws );
 
 };
 
