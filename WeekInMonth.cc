@@ -3,7 +3,7 @@
 
 #include <ostream>
 
-WeekInMonth::WeekInMonth ( PlanWeek const* aweek, unsigned anDays ):
+WeekInMonth::WeekInMonth ( PlanWeek const& aweek, unsigned anDays ):
   _week(aweek),
   _nDays(anDays),
   _fraction( double(_nDays)/double(constants::daysPerWeek) ) {

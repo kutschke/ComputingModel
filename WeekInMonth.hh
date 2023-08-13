@@ -7,14 +7,14 @@ class PlanWeek;
 
 class WeekInMonth {
 public:
-  WeekInMonth ( PlanWeek const* aweek, unsigned anDays );
+  WeekInMonth ( PlanWeek const& aweek, unsigned anDays );
 
-  PlanWeek const& week()     const { return *_week; }
-  unsigned        nDays()    const { return _nDays; }
+  PlanWeek const& week()     const { return _week;     }
+  unsigned        nDays()    const { return _nDays;    }
   double          fraction() const { return _fraction; }
 
 private:
-  PlanWeek const* _week;
+  PlanWeek const& _week;
   unsigned        _nDays;
   double          _fraction;
 };
