@@ -1,6 +1,10 @@
 #ifndef Data_hh
 #define Data_hh
 
+//
+// Information about a quantity of data, either per day, week, month, quarter, aggregate ...
+//
+
 #include "DataType.hh"
 
 class Data {
