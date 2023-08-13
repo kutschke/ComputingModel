@@ -6,6 +6,7 @@
 //
 
 #include "PlanWeek.hh"
+#include "WeekInMonth.hh"
 
 #include "TDatime.h"
 
@@ -27,7 +28,8 @@ public:
 
   unsigned nDays()          const { return _nDays;     }
 
-  std::vector< PlanWeek const*> const& weeks() const { return _weeks; }
+  std::vector<WeekInMonth> const& weeksInMonth() const { return _weeksInMonth; }
+
 
   unsigned duration()       const { return _duration;  }
   float    durationInDays() const { return _durationInDays; }
@@ -44,8 +46,8 @@ private:
   unsigned _duration = 0;          // Duration of the week, in seconds ( DST Transistions are shorter or longer )
   float    _durationInDays = 0;    // _duration in units of floating point days.
 
-  std::vector< PlanWeek const*> _weeks; // Pointers to the weeks that contribute to this month
-                                        // The first and last week may be partially in the month.
+  std::vector<WeekInMonth> _weeksInMonth; // Information about the weeks in this month;
+                                          // Includes weeks partly in the month.
 
   bool     _springDST = false;    // This month contains a spring forward daylight savings transition
   bool     _fallDST   = false;    // This month contains a fall back daylight savings transition
