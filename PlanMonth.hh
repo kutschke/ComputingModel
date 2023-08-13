@@ -21,7 +21,7 @@ public:
   // Needed for std::vector
   PlanMonth(){}
 
-  PlanMonth( TDatime const& t0, TDatime const& planEnd, std::vector<PlanWeek>& weeks);
+  PlanMonth( TDatime const& t0, TDatime const& planEnd, std::vector<PlanWeek> const& weeks);
 
   TDatime t0()   const { return _t0;  }
   TDatime tend() const { return _tend;}

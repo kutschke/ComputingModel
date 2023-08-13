@@ -28,7 +28,7 @@ public:
 
   DurationCalculator duration;
 
-  std::vector<RunPeriod> const& runs() const { return _runs; }
+  std::vector<RunPeriod> const& runPeriods() const { return _runPeriods; }
 
   float planDurationInDays() const;
   float planDurationInWeeks() const;
@@ -39,7 +39,7 @@ public:
 
 private:
 
-  std::vector<RunPeriod>          _runs;
+  std::vector<RunPeriod>          _runPeriods;
   std::map<RunType,RunParameters> _runParameters;
 
   void goodInputsOrThrow();

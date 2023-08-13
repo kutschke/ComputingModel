@@ -24,7 +24,7 @@ struct YearMonth{
 };
 
 
-PlanMonth::PlanMonth( TDatime const& t0, TDatime const& planEnd, std::vector<PlanWeek>& aweeks):_t0(t0){
+PlanMonth::PlanMonth( TDatime const& t0, TDatime const& planEnd, std::vector<PlanWeek> const& aweeks):_t0(t0){
   auto month = monthNumber(t0);
   auto year  = t0.GetYear();
   _nDays = daysPerMonth( month, year );
