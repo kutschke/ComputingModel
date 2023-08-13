@@ -51,23 +51,6 @@ PlanMonth::PlanMonth( TDatime const& t0, TDatime const& planEnd, std::vector<Pla
 
   connectWeeks( aweeks );
 
-  /*
-  cout << _t0.AsString() << "   " << _tend.AsString()
-       << "    Number of weeks: " << _weeks.size()
-       << " " << _durationInDays;
-  if  ( _springDST ) {
-    cout << "  Spring DST";
-  }
-  if  ( _fallDST ) {
-    cout << "  Fall DST";
-  }
-  cout << endl;
-
-  for ( auto w : _weeks ){
-    cout << "     " << *w << endl;
-  }
-  */
-
 }
 
 // Update the _weeks data member to point to each week that has
@@ -87,15 +70,15 @@ void PlanMonth::connectWeeks( std::vector<PlanWeek> const& ws ){
       }
     }
     if ( inMonth ){
-      //cout << "    In month: " << w << endl;
-      _weeks.emplace_back( &w ); 
+      cout << "    In month: " << w << endl;
+      _weeksInMonth.emplace_back( &w, 7 );
     }
   } // end for
 }
 
 void PlanMonth::printWeeks ( std::ostream& os, std::string const& prefix ) const{
-  for ( auto w: _weeks ){
-    os << prefix << *w << endl;
+  for ( auto w: _weeksInMonth){
+    os << prefix << w.week() << endl;
   }
 }
 
@@ -103,7 +86,7 @@ std::ostream& operator<<(std::ostream& os, const PlanMonth& pm ){
 
   os << "Start: "     << pm.t0().AsString()
      << "  End: "     << pm.tend().AsString()
-     << "  nWeeks: "  << pm.weeks().size()
+     << "  nWeeks: "  << pm.weeksInMonth().size()
     ;
 
   if ( pm.springDST() ){
