@@ -6,4 +6,5 @@
 *.pcm
 *.log
 *.pdf
+*.log*
 main
