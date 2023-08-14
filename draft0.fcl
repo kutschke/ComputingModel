@@ -90,7 +90,7 @@ RunPeriods : [
     start    : "2026-07-01"
     end      : "2026-08-31"
     fraction : 0.5
-    comment  : "Cosmic Ray running; inserted position; field on; commissioning with beam"
+    comment  : "Commissioning with beam; 1BB; low duty cycle"
  },
  {
     name     : "Run1a"
@@ -98,7 +98,7 @@ RunPeriods : [
     start    : "2026-09-01"
     end      : "2026-10-15"
     fraction : 0.9
-    comment  : "Run 1; 1BB"
+    comment  : "Run 1a; 1BB"
  },
  {
     name     : "Run1b"
