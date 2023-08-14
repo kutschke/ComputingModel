@@ -14,6 +14,8 @@ class Plan{
 public:
   Plan( PlanInputs const& inp );
 
+  void print() const;
+
   void printAllWeeks() const;
   void printWeeksSummary() const;
 
@@ -28,6 +30,8 @@ private:
 
   void buildWeeks();
   void buildMonths();
+  void processRunPeriods();
+
 };
 
 #endif
