@@ -45,6 +45,6 @@ private:
 
 };
 
-std::ostream& operator<<(std::ostream& ost, const PlanWeek& pw );
+std::ostream& operator<<(std::ostream& os, const PlanWeek& pw );
 
 #endif
