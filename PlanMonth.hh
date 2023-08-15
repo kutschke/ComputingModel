@@ -6,7 +6,7 @@
 //
 
 #include "PlanWeek.hh"
-#include "WeekInMonth.hh"
+#include "WeekIn.hh"
 
 #include "TDatime.h"
 
@@ -25,7 +25,7 @@ public:
 
   unsigned nDays()          const { return _nDays;     }
 
-  std::vector<WeekInMonth> const& weeksInMonth() const { return _weeksInMonth; }
+  std::vector<WeekIn> const& weeksInMonth() const { return _weeksInMonth; }
 
 
   unsigned duration()       const { return _duration;  }
@@ -43,17 +43,17 @@ private:
   unsigned _duration = 0;          // Duration of the week, in seconds ( DST Transistions are shorter or longer )
   float    _durationInDays = 0;    // _duration in units of floating point days.
 
-  std::vector<WeekInMonth> _weeksInMonth; // Information about the weeks in this month;
-                                          // Includes weeks partly in the month.
+  std::vector<WeekIn> _weeksInMonth; // Information about the weeks in this month;
+                                     // Includes weeks partly in the month.
 
-  bool     _springDST = false;    // This month contains a spring forward daylight savings transition
-  bool     _fallDST   = false;    // This month contains a fall back daylight savings transition
+  bool     _springDST = false;       // This month contains a spring forward daylight savings transition
+  bool     _fallDST   = false;       // This month contains a fall back daylight savings transition
 
   void connectWeeks( std::vector<PlanWeek> const& ws );
   void checkWeeks(   std::vector<PlanWeek> const& ws );
 
 };
 
-std::ostream& operator<<(std::ostream& ost, const PlanMonth& pw );
+std::ostream& operator<<(std::ostream& os, const PlanMonth& pw );
 
 #endif
