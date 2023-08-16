@@ -6,9 +6,10 @@
 # Control the level of debug/informational printout
 # 0 = minimal; higher number means more printout.
 verbosity : {
- inputs    : 1
- buildPlan : 1
- weeksInMonth : true
+ inputs           : 1
+ buildPlan        : 1
+ weeksInMonth     : true
+ weeksInRunPeriod : true
 }
 
 
@@ -213,14 +214,22 @@ RunPeriods : [
     comment  : "Run 2h; 2BB"
  },
  {
-    name     : "Analysis"
+    name     : "Analysis1"
     type     : noData
     start    : "2032-07-12"
-    end      : "2037-12-31"
+    end      : "2037-11-30"
     fraction : 0.
     comment  : "Post data analysis"
  }
-
+,
+ {
+    name     : "Analysis2"
+    type     : noData
+    start    : "2037-12-01"
+    end      : "2037-12-31"
+    fraction : 0.
+    comment  : "Final month"
+ }
 ]
 
 RunParameters : [

@@ -1,5 +1,4 @@
 #include "Plan.hh"
-
 #include "LocateWeekRange.hh"
 #include "constants.hh"
 #include "dateHelpers.hh"
@@ -12,14 +11,14 @@ using std::cerr;
 using std::cout;
 using std::endl;
 
-Plan::Plan( PlanInputs const& inp):_inp(inp){
+Plan::Plan( PlanInputs const& inp):
+  _inp(inp),
+  _runPeriods(inp.runPeriods()){
 
-  // Initialize the data members _weeks and _months.
+  // Initialize the data members _weeks, _months, _runPeriods
   buildWeeks();
   buildMonths();
-
-  // Data information about data to _weeks.
-  processRunPeriods();
+  buildRunPeriods();
 
   print();
 
@@ -100,55 +99,58 @@ void Plan::buildMonths(){
 }
 
 // Loop over the run periods and add raw data to the weeks.
-void Plan::processRunPeriods(){
+void Plan::buildRunPeriods(){
 
-  cout << "Processing run periods" << endl;
-  for ( auto const& r : _inp.runPeriods() ){
-    if ( r.type() == RunType::bb1 || r.type() == RunType::bb2 ){
+  for ( auto& r : _runPeriods ){
 
-      // Loop over weeks in this run period.
-      unsigned sumDays{0};
-      auto t0   = r.startDate().Convert();
-      auto tend = r.endDate().Convert();
-      LocateWeekRange range( r.startDate(), r.endDate(), _weeks );
+    // Temporary that will be copied into the RunPeriod.
+    std::vector<WeekIn> weeksIn;
 
-      // Alert: range is closed at both ends, not half-open.
-      for ( size_t i = range.firstWeek(); i < range.lastWeek()+1; ++i ){
-        PlanWeek& w = _weeks.at(i);
-        unsigned nDays{0};
-        auto wt0   = w.t0().Convert();
-        auto wtend = w.tend().Convert();
-        if ( wt0 >= t0 && wtend <= tend ){
-          nDays = constants::daysPerWeek;
-        } else if ( wt0 >= t0 ){
-          auto lastDay = dayOfWeek( r.endDate());
-          auto firstDay = dayOfWeek( w.t0() );
-          nDays = lastDay-firstDay+1;
-        } else if ( wtend <= tend ){
-          auto firstDay = dayOfWeek( r.startDate());
-          auto lastDay  = dayOfWeek( w.tend() );
-          nDays = lastDay-firstDay+1;
-        } else{
-          cerr << __func__ << "Failure of LocateWeekRange or its interpretation."
-               << "\nRun Period: " << r
-               << "\nWeek:       " << w
-               << endl;
-          throw std::logic_error("Failure of LocateWeekRange.");
-        }
-        sumDays += nDays;
-      } // end loop over weeks
-      auto duration = _dCalc.inDays( r.startDate(), r.endDate() );
-      cout << "   sumDays: " << sumDays << " " <<  duration << endl;
+    // Loop over weeks in this run period.
+    unsigned sumDays{0};
+    auto t0   = r.startDate().Convert();
+    auto tend = r.endDate().Convert();
+    LocateWeekRange range( r.startDate(), r.endDate(), _weeks );
 
-      // Cross-check.  Note that duration is aware of daylight savings but sumDays is not.
-      if ( std::abs( duration- double(sumDays)) > 0.1 ){
-        cerr << "Error processing run periods:"
-             << "\n" << r
-             << "\n Sum of over weeks: " << sumDays << "   Duration (days): " << duration
+    // Alert: range is closed at both ends, not half-open.
+    for ( size_t i = range.firstWeek(); i < range.lastWeek()+1; ++i ){
+      PlanWeek& w = _weeks.at(i);
+      unsigned nDays{0};
+      auto wt0   = w.t0().Convert();
+      auto wtend = w.tend().Convert();
+      if ( wt0 >= t0 && wtend <= tend ){
+        nDays = w.nDays();
+      } else if ( wt0 >= t0 ){
+        auto lastDay = dayOfWeek( r.endDate());
+        auto firstDay = dayOfWeek( w.t0() );
+        nDays = lastDay-firstDay+1;
+      } else if ( wtend <= tend ){
+        auto firstDay = dayOfWeek( r.startDate());
+        auto lastDay  = dayOfWeek( w.tend() );
+        nDays = lastDay-firstDay+1;
+      } else{
+        cerr << __func__ << "Failure of LocateWeekRange or its interpretation."
+             << "\nRun Period: " << r
+             << "\nWeek:       " << w
              << endl;
-        throw std::logic_error("Error processing run periods.");
+        throw std::logic_error("Failure of LocateWeekRange.");
       }
-    } // end if runType
+      sumDays += nDays;
+      weeksIn.emplace_back( w, nDays);
+    } // end loop over weeks
+
+    r.addWeeks( weeksIn );
+
+    auto duration = _dCalc.inDays( r.startDate(), r.endDate() );
+
+    // Cross-check.  Note that duration is aware of daylight savings but sumDays is not.
+    if ( std::abs( duration- double(sumDays)) > 0.1 ){
+      cerr << "Error processing run periods:"
+           << "\n" << r
+           << "\n Sum of over weeks: " << sumDays << "   Duration (days): " << duration
+           << endl;
+      throw std::logic_error("Error processing run periods.");
+    }
 
   } // end loop over runPeriods
 }
@@ -161,12 +163,14 @@ void Plan::print() const {
 
   } else if ( _inp.verbosity.buildPlan > 0 && _inp.verbosity.buildPlan < 2 ){
     printWeeksSummary();
-    printMonthsSummary( _inp.verbosity.weeksInMonth  );
+    printMonthsSummary    ( _inp.verbosity.weeksInMonth     );
+    printRunPeriodsSummary( _inp.verbosity.weeksInRunPeriod );
 
   } else if ( _inp.verbosity.buildPlan >= 2 ){
     printAllWeeks();
     printAllMonths( _inp.verbosity.weeksInMonth );
   }
+
 
 }
 
@@ -203,4 +207,17 @@ void Plan::printMonthsSummary( bool printWeeks ) const{
   if ( printWeeks ){
     _months.back().printWeeks( cout, "     " );
   }
+}
+
+void Plan::printRunPeriodsSummary( bool printWeeks ) const{
+  cout << "\nNumber of RunPeriods: " << _runPeriods.size()  << endl;
+  cout << "     First RunPeriod:        " << _runPeriods.front() << endl;
+  if ( printWeeks ){
+    _runPeriods.front().printWeeks( cout, "         " );
+  }
+  cout << "     Last  RunPeriod:        " << _runPeriods.back()  << endl;
+  if ( printWeeks ){
+    _runPeriods.back().printWeeks( cout, "         " );
+  }
+
 }

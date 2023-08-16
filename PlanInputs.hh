@@ -15,9 +15,10 @@ struct PlanInputs{
 public:
 
   struct Verbosity{
-    unsigned inputs       = 0;
-    unsigned buildPlan    = 0;
-    bool     weeksInMonth = false;
+    unsigned inputs           = 0;
+    unsigned buildPlan        = 0;
+    bool     weeksInMonth     = false;
+    bool     weeksInRunPeriod = false;
   };
 
   PlanInputs( std::string const& filename );

@@ -19,18 +19,20 @@ public:
   void printAllWeeks() const;
   void printWeeksSummary() const;
 
-  void printAllMonths( bool printWeeks = false) const;
-  void printMonthsSummary( bool printWeeks = false) const;
+  void printAllMonths        ( bool printWeeks = false) const;
+  void printMonthsSummary    ( bool printWeeks = false) const;
+  void printRunPeriodsSummary( bool printWeeks = false) const;
 
 private:
   DurationCalculator     _dCalc;
   PlanInputs const&      _inp;
   std::vector<PlanWeek>  _weeks;
   std::vector<PlanMonth> _months;
+  std::vector<RunPeriod> _runPeriods;
 
   void buildWeeks();
   void buildMonths();
-  void processRunPeriods();
+  void buildRunPeriods();
 
 };
 

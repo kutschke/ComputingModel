@@ -12,8 +12,8 @@ WeekIn::WeekIn ( PlanWeek const& aweek, unsigned anDays ):
 }
 
 std::ostream& operator<<(std::ostream& os, const WeekIn& w ){
-  os << "Week:  "    << w.week()
-     << "nDays: "    << w.nDays()
-     << "fraction: " << w.fraction();
+  os << "WeekIn:  "    << w.week()
+     << "  nDays: "    << w.nDays()
+     << "  fraction: " << w.fraction();
   return os;
 }

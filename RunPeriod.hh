@@ -1,8 +1,20 @@
 #ifndef RunPeriod_hh
 #define RunPeriod_hh
 
+//
+// Information about one running period.
+//
+// Notes:
+// 1) There are instancs of this class in both PlanInputs.hh and
+//    Plan.hh.  The former holds only the information read from
+//    the configuration file; the member datum _weeks is empty.
+//    The latter has 2 phase construction - the core information
+//    is copied from PlanInputs and the _weeks is filled in next.
+//
+
 #include "TDatime.h"
 #include "RunType.hh"
+#include "WeekIn.hh"
 
 #include "fhiclcpp/ParameterSet.h"
 #include "fhiclcpp/types/Atom.h"
@@ -28,16 +40,29 @@ public:
 
   RunPeriod( Config const& conf );
 
-  RunType            type()      const { return _type;      }
-  TDatime const&     startDate() const { return _startDate; }
-  TDatime const&     endDate()   const { return _endDate;   }
-  float              fraction()  const { return _fraction;  }
-  std::string const& comment()   const { return _comment;   }
+  RunType             type()      const { return _type;      }
+  TDatime const&      startDate() const { return _startDate; }
+  TDatime const&      endDate()   const { return _endDate;   }
+  float               fraction()  const { return _fraction;  }
+  std::string const&  comment()   const { return _comment;   }
+
+  // Alert: this is sometimes empty;  see note 1.
+  std::vector<WeekIn> const & weeks() const { return _weeks; }
+
+  // Add the week information.
+  void addWeeks( std::vector<WeekIn> const& w);
+
+  void printWeeks ( std::ostream& os, std::string const& prefix ) const;
 
 private:
   TDatime     _startDate; // Whole day; no support for fractional days
   TDatime     _endDate;   // Whole day; no support for fractional days
   std::string _comment;   // Descriptive only
+
+  // Alert.  Two phase construction. See note 1.
+  // Weeks fully or partly within this run period.
+  std::vector<WeekIn> _weeks;
+
   float       _fraction;  // Fraction of time spent running.
   RunType     _type;      // From the enum.
 
