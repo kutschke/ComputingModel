@@ -10,7 +10,9 @@
 class Data {
 public:
 
-  Data ( DataType atype, double events, double asize);
+  Data():_type(DataType::unknown),_events(0.),_size(0.){}
+
+  Data ( DataType atype, double aevents, double asize);
 
   DataType type()   const { return _type;}
   double   events() const { return _events;}
