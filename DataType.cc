@@ -15,7 +15,7 @@ std::map<DataTypeDetail::enum_type,std::string> const& DataTypeDetail::names(){
 
   if ( nam.empty() ){
     nam[unknown]            = "unknown";
-    nam[bb1OnSpiil]         = "bb1OnSpiil";
+    nam[bb1OnSpill]         = "bb1OnSpill";
     nam[bb2OnSpill]         = "bb2OnSpill";
     nam[intensityStream]    = "intensityStream";
     nam[extMonPixelSummary] = "extMonPixelSummary";

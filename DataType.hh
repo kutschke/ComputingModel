@@ -11,7 +11,7 @@ class DataTypeDetail{
 public:
 
   enum enum_type { unknown,            //
-                   bb1OnSpiil,         //
+                   bb1OnSpill,         //
                    bb2OnSpill,         //
                    intensityStream,    //
                    extMonPixelSummary, //
