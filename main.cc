@@ -1,5 +1,6 @@
 #include "PlanInputs.hh"
 #include "Plan.hh"
+#include "PlotMaker.hh"
 
 #include <iostream>
 
@@ -18,6 +19,9 @@ int main( int nargs, char** argc) {
 
   // Build the model.
   Plan plan(inp);
+
+  // Make the plots etc
+  PlotMaker ( inp, plan);
 
   return 0;
 }
