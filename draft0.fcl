@@ -20,6 +20,8 @@ PlanDuration: {
   end   : "2037-12-31"
 }
 
+rootOutputFileName : "draft0.root"
+
 # List all of the running periods
 RunPeriods : [
  {

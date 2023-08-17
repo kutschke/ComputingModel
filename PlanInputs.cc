@@ -36,8 +36,9 @@ namespace {
   };
 
   struct Config{
-    fhicl::Table<VerbosityConfig>  verbosityConfig{Name("verbosity")};
+    fhicl::Table<VerbosityConfig>   verbosityConfig{Name("verbosity")};
     fhicl::Table<PlanDuration>      planDuration {Name("PlanDuration")};
+    fhicl::Atom<std::string>        rootOutputFileName { Name{"rootOutputFileName"}, Comment{"Name of the root output file that has histograms of resource use."}};
     fhicl::Sequence<fhicl::Table<RunPeriod::Config>> runs {Name("RunPeriods"),Comment{"A list of all of the run periods in the model."}};
     fhicl::Sequence<fhicl::Table<RunParameters::Config>> runParameters {Name("RunParameters"),Comment{"Parameters for each type of run: 1BB, 2BB, Cosmic."}};
   };
@@ -63,6 +64,8 @@ PlanInputs::PlanInputs( std::string const& fileName ){
   verbosity.weeksInMonth     = config().verbosityConfig().weeksInMonth();
   verbosity.weeksInRunPeriod = config().verbosityConfig().weeksInRunPeriod();
 
+  rootOutputFileName = config().rootOutputFileName();
+
   std::vector<RunPeriod::Config> runs = config().runs();
   for ( RunPeriod::Config const& c : runs ){
     _runPeriods.emplace_back(c);
@@ -86,6 +89,15 @@ PlanInputs::PlanInputs( std::string const& fileName ){
 
 }
 
+RunParameters const& PlanInputs::runParameters( RunType rt ) const{
+  auto i = _runParameters.find(rt);
+  if ( i == _runParameters.end() ){
+    cerr << __func__  <<  "   RunParameters not found for this RunType: " << rt << endl;
+    throw std::domain_error("RunParameters not found");
+  }
+  return i->second;
+}
+
 void PlanInputs::print() const{
   cout << "Plan start date:      " << startDate.AsString()       << endl;
   cout << "Plan end date:        " <<   endDate.AsString()       << endl;
@@ -93,6 +105,7 @@ void PlanInputs::print() const{
   cout << "Duration in weeks:    " << planDurationInWeeks()      << endl;
   cout << "Duration in months:   " << planDurationInMonths()     << endl;
   cout << "Duration in quarters: " << planDurationInQuarters()   << endl;
+  cout << "Root output filename: " << rootOutputFileName         << endl;
   cout << "Verbosity levels:"      << endl;
   cout << "   inputs:            " << verbosity.inputs           << endl;
   cout << "   buildPlan:         " << verbosity.buildPlan        << endl;

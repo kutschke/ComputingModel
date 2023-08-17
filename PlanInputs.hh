@@ -7,6 +7,7 @@
 
 #include "TDatime.h"
 
+#include <string>
 #include <vector>
 #include <map>
 
@@ -27,9 +28,13 @@ public:
   TDatime   startDate;
   TDatime   endDate;
 
+  std::string rootOutputFileName;
+
   DurationCalculator duration;
 
   std::vector<RunPeriod> const& runPeriods() const { return _runPeriods; }
+
+  RunParameters const& runParameters( RunType rt ) const;
 
   float planDurationInDays() const;
   float planDurationInWeeks() const;
