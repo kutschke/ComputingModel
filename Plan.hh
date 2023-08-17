@@ -14,6 +14,9 @@ class Plan{
 public:
   Plan( PlanInputs const& inp );
 
+  std::vector<PlanWeek>  const& weeks()            const { return  _weeks;            }
+  std::vector<Resources> const& resourcesPerWeek() const { return  _resourcesPerWeek; }
+
   void print() const;
 
   void printAllWeeks() const;
