@@ -25,6 +25,8 @@ public:
     fhicl::Atom<std::string> comment          { Name{"comment"},          Comment{"A human meaningfull description of this run period."}};
   };
 
+  RunParameters(){}
+
   RunParameters( Config const& conf );
 
   RunType     type()             const { return _type;         }
