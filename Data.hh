@@ -18,6 +18,8 @@ public:
   double   events() const { return _events;}
   double   size()   const { return _size;}
 
+  Data& operator+=( Data const& rhs);
+
 private:
 
   DataType _type;
