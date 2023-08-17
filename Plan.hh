@@ -1,11 +1,11 @@
 #ifndef Plan_hh
 #define Plan_hh
 
-
 #include "DurationCalculator.hh"
 #include "PlanInputs.hh"
 #include "PlanWeek.hh"
 #include "PlanMonth.hh"
+#include "Resources.hh"
 
 #include <vector>
 
@@ -30,9 +30,15 @@ private:
   std::vector<PlanMonth> _months;
   std::vector<RunPeriod> _runPeriods;
 
+  // In lock step with PlanWeek.
+  std::vector<Resources> _resourcesPerWeek;
+
   void buildWeeks();
   void buildMonths();
   void buildRunPeriods();
+
+  void initializeResources();
+  void addRawData();
 
 };
 

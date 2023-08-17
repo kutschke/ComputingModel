@@ -20,7 +20,21 @@ Plan::Plan( PlanInputs const& inp):
   buildMonths();
   buildRunPeriods();
 
+  initializeResources();
+
+  // Add the raw data to the weeks.
+  addRawData();
+
   print();
+
+  for ( auto const& res : _resourcesPerWeek ){
+    if ( ! res.rawData.empty() ) {
+      cout << res.index << " " << _weeks[res.index] << endl;
+      for ( auto const& raw : res.rawData ){
+        cout << "   " << raw.first << "  |  " << raw.second << endl;
+      }
+    }
+  }
 
 
 }
@@ -153,7 +167,37 @@ void Plan::buildRunPeriods(){
     }
 
   } // end loop over runPeriods
+} // end buildRunPeriods
+
+void Plan::initializeResources(){
+  _resourcesPerWeek.reserve(_weeks.size());
+  for ( size_t i=0; i<_weeks.size(); ++i ){
+    _resourcesPerWeek.emplace_back(i);
+  }
 }
+
+
+void Plan::addRawData() {
+
+  for ( auto& rp : _runPeriods ){
+    if ( rp.type() == RunType::bb1 || rp.type() == RunType::bb2 ){
+      RunParameters const& params= _inp.runParameters(rp.type());
+      cout << "Run params: " << params << endl;
+      for ( auto const& w : rp.weeks() ){
+        size_t iw = &w.week()-&_weeks.front();
+        cout << "       week: " << w << " " << iw << endl;
+        DataType dt(DataType::bb1OnSpill);
+        double f = w.fraction();
+        Data tmp( dt, params.eventsPerWeek()*f, params.bytesPerWeek()*f );
+        cout <<  "          data: "  << tmp << endl;
+        cout <<  "          check: " << iw << "  " << _resourcesPerWeek[iw].index << endl;
+        _resourcesPerWeek[iw].addRawData(tmp);
+
+      }
+    }
+  } // end Loop over run periods.
+
+} // end addRawData
 
 void Plan::print() const {
 
@@ -172,7 +216,7 @@ void Plan::print() const {
   }
 
 
-}
+} // end print
 
 void Plan::printAllWeeks() const{
   cout << "\nNumber of weeks: " << _weeks.size()  << endl;
