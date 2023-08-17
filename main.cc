@@ -21,7 +21,8 @@ int main( int nargs, char** argc) {
   Plan plan(inp);
 
   // Make the plots etc
-  PlotMaker ( inp, plan);
+  PlotMaker pm( inp, plan);
+  pm.plotRawData();
 
   return 0;
 }
