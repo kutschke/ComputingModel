@@ -7,4 +7,5 @@
 *.log
 *.pdf
 *.log*
+*.root
 main
