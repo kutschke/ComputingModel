@@ -1,3 +1,4 @@
+
 #include "Plan.hh"
 #include "LocateWeekRange.hh"
 #include "constants.hh"
@@ -186,9 +187,10 @@ void Plan::addRawData() {
       for ( auto const& w : rp.weeks() ){
         size_t iw = &w.week()-&_weeks.front();
         cout << "       week: " << w << " " << iw << endl;
-        DataType dt(DataType::bb1OnSpill);
+        // Fixme: need a more general solution for this
+        auto dt = ( rp.type() == RunType::bb1 ) ? DataType::bb1OnSpill : DataType::bb2OnSpill;
         double f = w.fraction();
-        Data tmp( dt, params.eventsPerWeek()*f, params.bytesPerWeek()*f );
+        Data tmp( DataType(dt), params.eventsPerWeek()*f, params.bytesPerWeek()*f );
         cout <<  "          data: "  << tmp << endl;
         cout <<  "          check: " << iw << "  " << _resourcesPerWeek[iw].index << endl;
         _resourcesPerWeek[iw].addRawData(tmp);
