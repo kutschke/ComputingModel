@@ -31,13 +31,13 @@ namespace {
   };
 
   struct PlanDuration {
-    fhicl::Atom<std::string> start{ Name{"start"}, Comment{"Start date of the plan."}};
-    fhicl::Atom<std::string> end{ Name{"end"},     Comment{"End date of the plan."}};
+    fhicl::Atom<std::string> start{ Name{"start"}, Comment{"Start date of the plan in format YYYY-MM-DD."}};
+    fhicl::Atom<std::string> end{ Name{"end"},     Comment{"End date of the plan in format YYYY-MM-DD."}};
   };
 
   struct Config{
-    fhicl::Table<VerbosityConfig>   verbosityConfig{Name("verbosity")};
-    fhicl::Table<PlanDuration>      planDuration {Name("PlanDuration")};
+    fhicl::Table<VerbosityConfig>   verbosityConfig{Name("verbosity"), Comment{"Verbosity levels for different parts of the code."}};
+    fhicl::Table<PlanDuration>      planDuration {Name("PlanDuration"), Comment{"Duration of the plan."}};
     fhicl::Atom<std::string>        rootOutputFileName { Name{"rootOutputFileName"}, Comment{"Name of the root output file that has histograms of resource use."}};
     fhicl::Sequence<fhicl::Table<RunPeriod::Config>> runs {Name("RunPeriods"),Comment{"A list of all of the run periods in the model."}};
     fhicl::Sequence<fhicl::Table<RunParameters::Config>> runParameters {Name("RunParameters"),Comment{"Parameters for each type of run: 1BB, 2BB, Cosmic."}};

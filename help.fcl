@@ -20,7 +20,24 @@ PlanDuration: {
 rootOutputFileName : "dummy.root"
 
 # List all of the running periods
-RunPeriods : [ ]
+RunPeriods : [
+ {
+    name     : "Name"
+    type     : noData
+    start    : "2024-01-01"
+    end      : "2024-01-31"
+    fraction : 0
+    comment  : ""
+ }
+]
 
 # Parameters of the different types of running periods.
-RunParameters : []
+RunParameters : [
+ {
+    type             : bb1
+    eventSize        : 200
+    eventsPerDay     : 6.46E9
+    triggerRejection : 400.
+    comment          : ""
+ }
+]

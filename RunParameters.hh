@@ -22,7 +22,7 @@ public:
     fhicl::Atom<double>      eventSize        { Name{"eventSize"},        Comment{"Size of 1 event in kB"} };
     fhicl::Atom<double>      eventsPerDay     { Name{"eventsPerDay"},     Comment{"Number of events per day (untriggered) at 100% duty factor"} };
     fhicl::Atom<double>      triggerRejection { Name{"triggerRejection"}, Comment{"Trigger rejection factor; a number like 200 or 400"}  };
-    fhicl::Atom<std::string> comment          { Name{"comment"},          Comment{"A human meaningfull description of this run period."}};
+    fhicl::Atom<std::string> comment          { Name{"comment"},          Comment{"A human meaningfull description of this type of run."}};
   };
 
   RunParameters(){}
