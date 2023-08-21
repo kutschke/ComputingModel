@@ -5,10 +5,10 @@
 # Control the level of debug/informational printout
 # 0 = minimal; higher number means more printout.
 verbosity : {
- inputs           : 1
- buildPlan        : 1
- weeksInMonth     : true
- weeksInRunPeriod : true
+ inputs           : 0
+ buildPlan        : 0
+ weeksInMonth     : false
+ weeksInRunPeriod : false
 }
 
 # Duration of the full plan
@@ -17,7 +17,7 @@ PlanDuration: {
   end   : "2037-12-31"
 }
 
-rootOutputFileName : "draft0.root"
+rootOutputFileName : "dummy.root"
 
 # List all of the running periods
 RunPeriods : [ ]

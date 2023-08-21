@@ -61,7 +61,10 @@ PlanInputs::PlanInputs( std::string const& fileName ){
 
   // Online help information.
   if ( fileName == "-?" || fileName == "--help" || fileName == "-h" ){
-    auto config = tableFromFile( "template.fcl");
+
+    // There is no default constructor for fhicl::Table<Config> and this is
+    // a good enough way to implement it.
+    auto config = tableFromFile( "help.fcl");
     config.print_allowed_configuration(std::cout);
     cout << "Exiting main program." << endl;
     exit(0);
