@@ -5,7 +5,7 @@
 #include "Plan.hh"
 
 #include "TFile.h"
-#include "TH1F.h"
+#include "TH1D.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -28,6 +28,10 @@ void PlotMaker::plotRawData (){
   for ( size_t i=0; i<_plan.resourcesPerWeek().size(); ++i ){
     auto const& r =  _plan.resourcesPerWeek().at(i);
     if ( !r.rawData.empty() ){
+      //size_t s= r.rawData.size();
+      //if ( s > 1 ){
+      //  cout << "s>1  " << s << " " << _plan.weeks().at(i).t0().AsString() << endl;
+      //}
       if ( start == -1 ){
         start = i;
       }
@@ -44,8 +48,10 @@ void PlotMaker::plotRawData (){
   // Offset to define bin center relative to bin lower edge
   double halfWeek = 0.5*double(constants::secondsPerWeek);
 
-  TH1F* hraw    = new TH1F( "raw",    "On-spill Raw Data vs time;;(TB)",          nWeeks, w0.t0().Convert(), w1.tend().Convert() );
-  TH1F* hrawInt = new TH1F( "rawInt", "On-spill Raw Data Integral vs time;;(TB)", nWeeks, w0.t0().Convert(), w1.tend().Convert() );
+  TH1D* hraw    = new TH1D( "raw",    "On-spill Raw Data vs time;;(TB)",          nWeeks, w0.t0().Convert(), w1.tend().Convert() );
+  TH1D* hrawInt = new TH1D( "rawInt", "On-spill Raw Data Integral vs time;;(TB)", nWeeks, w0.t0().Convert(), w1.tend().Convert() );
+
+  std::vector<double> zero(nWeeks,0);
 
   double sum{0.};
   for ( size_t i=0; i<_plan.resourcesPerWeek().size(); ++i ){
@@ -55,14 +61,21 @@ void PlotMaker::plotRawData (){
     // Bin center for this week
     double t = w.t0().Convert() + halfWeek;
 
-    for ( auto const& i : r.rawData ){
-      double datasize = i.second.size();
+    for ( auto const& j : r.rawData ){
+      double datasize = j.second.size();
+      //cout << "   Data: " << i << " " << j.second << endl;
       hraw->Fill( t, datasize);
       sum+=datasize;
     }
     hrawInt->Fill(t, sum);
 
   } // end loop over resource weeks
+
+  // Tell root that none of the bins have errors.
+  hraw   ->SetError( zero.data() );
+  hrawInt->SetError( zero.data() );
+
+  cout << "Total data size(TB): " << sum << endl;
 
   file->Write();
   file->Close();

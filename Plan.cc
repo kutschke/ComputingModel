@@ -28,6 +28,8 @@ Plan::Plan( PlanInputs const& inp):
 
   print();
 
+  /*
+  // For debugging
   for ( auto const& res : _resourcesPerWeek ){
     if ( ! res.rawData.empty() ) {
       cout << res.index << " " << _weeks[res.index] << endl;
@@ -36,6 +38,7 @@ Plan::Plan( PlanInputs const& inp):
       }
     }
   }
+  */
 
 
 }
@@ -180,19 +183,22 @@ void Plan::initializeResources(){
 
 void Plan::addRawData() {
 
-  for ( auto& rp : _runPeriods ){
-    if ( rp.type() == RunType::bb1 || rp.type() == RunType::bb2 ){
-      RunParameters const& params= _inp.runParameters(rp.type());
-      cout << "Run params: " << params << endl;
-      for ( auto const& w : rp.weeks() ){
+  for ( auto& runPeriod : _runPeriods ){
+    //cout << "Period: " << runPeriod << endl;
+    if ( runPeriod.type() == RunType::bb1 || runPeriod.type() == RunType::bb2 ){
+      RunParameters const& params= _inp.runParameters(runPeriod.type());
+      //cout << "Run params: " << params << endl;
+      double rpLiveFraction = runPeriod.fraction();
+      for ( auto const& w : runPeriod.weeks() ){
         size_t iw = &w.week()-&_weeks.front();
-        cout << "       week: " << w << " " << iw << endl;
+        //cout << "       week: " << w << " " << iw << endl;
         // Fixme: need a more general solution for this
-        auto dt = ( rp.type() == RunType::bb1 ) ? DataType::bb1OnSpill : DataType::bb2OnSpill;
-        double f = w.fraction();
+        auto dt = ( runPeriod.type() == RunType::bb1 ) ? DataType::bb1OnSpill : DataType::bb2OnSpill;
+        double fractionOfWeek = w.fraction();     //  Fraction of the week that is in this running period.
+        double f = rpLiveFraction*fractionOfWeek;
         Data tmp( DataType(dt), params.eventsPerWeek()*f, params.bytesPerWeek()*f );
-        cout <<  "          data: "  << tmp << endl;
-        cout <<  "          check: " << iw << "  " << _resourcesPerWeek[iw].index << endl;
+        //cout <<  "          data: "  << tmp << endl;
+        //cout <<  "          check: " << iw << "  " << _resourcesPerWeek[iw].index << endl;
         _resourcesPerWeek[iw].addRawData(tmp);
 
       }
