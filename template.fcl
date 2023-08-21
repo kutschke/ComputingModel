@@ -1,0 +1,26 @@
+#
+# A version of the fcl file needed to support the online help option.
+#
+
+# Control the level of debug/informational printout
+# 0 = minimal; higher number means more printout.
+verbosity : {
+ inputs           : 1
+ buildPlan        : 1
+ weeksInMonth     : true
+ weeksInRunPeriod : true
+}
+
+# Duration of the full plan
+PlanDuration: {
+  start : "2024-01-01"
+  end   : "2037-12-31"
+}
+
+rootOutputFileName : "draft0.root"
+
+# List all of the running periods
+RunPeriods : [ ]
+
+# Parameters of the different types of running periods.
+RunParameters : []

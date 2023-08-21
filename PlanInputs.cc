@@ -45,13 +45,31 @@ namespace {
 
 }
 
+namespace {
+
+  // Helper function to create a fcl table given a filename.
+  fhicl::Table<Config> tableFromFile( std::string fileName ){
+    cet::filepath_lookup policy("FHICL_FILE_PATH");
+    fhicl::ParameterSet pSet{fhicl::ParameterSet::make(fileName, policy)};
+    fhicl::Table<Config> config{pSet};
+    return config;
+  }
+
+}
+
 PlanInputs::PlanInputs( std::string const& fileName ){
+
+  // Online help information.
+  if ( fileName == "-?" || fileName == "--help" || fileName == "-h" ){
+    auto config = tableFromFile( "template.fcl");
+    config.print_allowed_configuration(std::cout);
+    cout << "Exiting main program." << endl;
+    exit(0);
+  }
 
   // Create the configuration object from the input configuation file.
   cout << "PlanInputs filename: " << fileName << endl;
-  cet::filepath_lookup policy("FHICL_FILE_PATH");
-  fhicl::ParameterSet pSet{fhicl::ParameterSet::make(fileName, policy)};
-  fhicl::Table<Config> config{pSet};
+  auto config(tableFromFile(fileName));
 
   std::string start = config().planDuration().start();
   std::string end   = config().planDuration().end();
