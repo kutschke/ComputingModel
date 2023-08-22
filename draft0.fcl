@@ -1,4 +1,4 @@
-a#
+#
 # Working draft of inputs to the Mu2e computing model.
 # Using during development.
 #
@@ -25,212 +25,238 @@ rootOutputFileName : "draft0.root"
 # List all of the running periods
 RunPeriods : [
  {
-    name     : "PreRunning"
-    type     : noData
-    start    : "2024-01-01"
-    end      : "2024-01-31"
-    fraction : 0
-    comment  : "Detectors not yet ready; no data taking."
+    name             : "PreRunning"
+    type             : noData
+    start            : "2024-01-01"
+    end              : "2024-01-31"
+    liveFraction     : 0
+    triggerRejection : 1.
+    comment          : "Detectors not yet ready; no data taking."
  },
  {
-    name     : "cosmicExtracted1"
-    type     : cosmicCalOnly
-    start    : "2024-02-01"
-    end      : "2024-06-30"
-    fraction : 0.9
-    comment  : "Calorimeter in Mu2e Hall taking cosmics"
+    name             : "cosmicExtracted1"
+    type             : cosmicCalOnly
+    start            : "2024-02-01"
+    end              : "2024-06-30"
+    liveFraction     : 0.9
+    triggerRejection : 1.
+    comment          : "Calorimeter in Mu2e Hall taking cosmics"
  },
  {
-    name     : "cosmicExtracted2"
-    type     : cosmicExtracted
-    start    : "2024-07-01"
-    end      : "2024-08-31"
-    fraction : 0.25
-    comment  : "Calorimeter+Tracker+CRV in extracted position early commissioning"
+    name             : "cosmicExtracted2"
+    type             : cosmicExtracted
+    start            : "2024-07-01"
+    end              : "2024-08-31"
+    liveFraction     : 0.25
+    triggerRejection : 1.
+    comment          : "Calorimeter+Tracker+CRV in extracted position early commissioning"
  },
  {
-    name     : "cosmicExtracted3"
-    type     : cosmicExtracted
-    start    : "2024-09-01"
-    end      : "2025-02-15"
-    fraction : 0.5
-    comment  : "Cosmic Ray test run ending in Detector KPP"
+    name             : "cosmicExtracted3"
+    type             : cosmicExtracted
+    start            : "2024-09-01"
+    end              : "2025-02-15"
+    liveFraction     : 0.5
+    triggerRejection : 1.
+    comment          : "Cosmic Ray test run ending in Detector KPP"
  },
  {
-    name     : "cosmicExtracted4"
-    type     : cosmicExtracted
-    start    : "2025-02-16"
-    end      : "2025-12-31"
-    fraction : 0.8
-    comment  : "Cosmic Ray running between Detector KPP and insertion into Magnet"
+    name             : "cosmicExtracted4"
+    type             : cosmicExtracted
+    start            : "2025-02-16"
+    end              : "2025-12-31"
+    liveFraction     : 0.8
+    triggerRejection : 1.
+    comment          : "Cosmic Ray running between Detector KPP and insertion into Magnet"
  },
- {  name     : "Insertion"
-    type     : noData
-    start    : "2026-01-01"
-    end      : "2026-01-31"
-    fraction : 0
-    comment  : "No data taking; insertion of detector into magnet"
- },
- {
-    name     : "cosmicNofield01"
-    type     : cosmicNoField
-    start    : "2026-02-01"
-    end      : "2026-02-14"
-    fraction : 0.4
-    comment  : "Cosmic Ray running inserted into magnet; field off"
+ {  name             : "Insertion"
+    type             : noData
+    start            : "2026-01-01"
+    end              : "2026-01-31"
+    liveFraction     : 0
+    triggerRejection : 1.
+    comment          : "No data taking; insertion of detector into magnet"
  },
  {
-    name     : "Commission01"
-    type     : cosmic
-    start    : "2026-02-15"
-    end      : "2026-06-30"
-    fraction : 0.4
-    comment  : "Cosmic Ray running; inserted position; field on; no beam"
+    name             : "cosmicNofield01"
+    type             : cosmicNoField
+    start            : "2026-02-01"
+    end              : "2026-02-14"
+    liveFraction     : 0.4
+    triggerRejection : 1.
+    comment          : "Cosmic Ray running inserted into magnet; field off"
  },
  {
-    name     : "Commission02"
-    type     : bb1
-    start    : "2026-07-01"
-    end      : "2026-08-31"
-    fraction : 0.5
-    comment  : "Commissioning with beam; 1BB; low duty cycle"
+    name             : "Commission01"
+    type             : cosmic
+    start            : "2026-02-15"
+    end              : "2026-06-30"
+    liveFraction     : 0.4
+    triggerRejection : 1.
+    comment          : "Cosmic Ray running; inserted position; field on; no beam"
  },
  {
-    name     : "Run1a"
-    type     : bb1
-    start    : "2026-09-01"
-    end      : "2026-10-15"
-    fraction : 0.9
-    comment  : "Run 1a; 1BB"
+    name             : "Commission02"
+    type             : bb1
+    start            : "2026-07-01"
+    end              : "2026-08-31"
+    liveFraction     : 0.5
+    triggerRejection : 200.
+    comment          : "Commissioning with beam; 1BB; low duty cycle"
  },
  {
-    name     : "Run1b"
-    type     : bb2
-    start    : "2026-10-16"
-    end      : "2026-11-15"
-    fraction : 0.5
-    comment  : "Run 1b; commmission 2BB running"
+    name             : "Run1a"
+    type             : bb1
+    start            : "2026-09-01"
+    end              : "2026-10-15"
+    liveFraction     : 0.9
+    triggerRejection : 400.
+    comment          : "Run 1a; 1BB"
  },
  {
-    name     : "Run1c"
-    type     : bb2
-    start    : "2026-11-16"
-    end      : "2027-01-15"
-    fraction : 0.9
-    comment  : "Run 1c; 2BB"
+    name             : "Run1b"
+    type             : bb2
+    start            : "2026-10-16"
+    end              : "2026-11-15"
+    liveFraction     : 0.5
+    triggerRejection : 200.
+    comment          : "Run 1b; commmission 2BB running"
  },
  {
-    name     : "LongShutdown"
-    type     : noData
-    start    : "2027-01-16"
-    end      : "2029-01-14"
-    fraction : 0.
-    comment  : "Long shutdown"
+    name             : "Run1c"
+    type             : bb2
+    start            : "2026-11-16"
+    end              : "2027-01-15"
+    liveFraction     : 0.9
+    triggerRejection : 400.
+    comment          : "Run 1c; 2BB"
  },
  {
-    name     : "Run 2a"
-    type     : bb2
-    start    : "2029-01-15"
-    end      : "2029-02-11"
-    fraction : 0.5
-    comment  : "Run 2a; 2BB commissioning"
+    name             : "LongShutdown"
+    type             : noData
+    start            : "2027-01-16"
+    end              : "2029-01-14"
+    liveFraction     : 0.
+    triggerRejection : 1.
+    comment          : "Long shutdown"
  },
  {
-    name     : "Run 2b"
-    type     : bb2
-    start    : "2029-02-12"
-    end      : "2029-07-15"
-    fraction : 0.9
-    comment  : "Run 2a; 2BB "
+    name             : "Run 2a"
+    type             : bb2
+    start            : "2029-01-15"
+    end              : "2029-02-11"
+    liveFraction     : 0.5
+    triggerRejection : 200.
+    comment          : "Run 2a; 2BB commissioning"
  },
  {
-    name     : "SummerShutdown2029"
-    type     : noData
-    start    : "2029-07-16"
-    end      : "2029-09-30"
-    fraction : 0.
-    comment  : "Summer shutdown 2029"
+    name             : "Run 2b"
+    type             : bb2
+    start            : "2029-02-12"
+    end              : "2029-07-15"
+    liveFraction     : 0.9
+    triggerRejection : 400.
+    comment          : "Run 2a; 2BB "
  },
  {
-    name     : "Run 2c"
-    type     : bb2
-    start    : "2029-10-01"
-    end      : "2029-10-31"
-    fraction : 0.5
-    comment  : "Run 2c; 2BB commissioning"
+    name             : "SummerShutdown2029"
+    type             : noData
+    start            : "2029-07-16"
+    end              : "2029-09-30"
+    liveFraction     : 0.
+    triggerRejection : 1.
+    comment          : "Summer shutdown 2029"
  },
  {
-    name     : "Run 2d"
-    type     : bb2
-    start    : "2029-11-01"
-    end      : "2030-07-14"
-    fraction : 0.5
-    comment  : "Run 2d; 2BB"
+    name             : "Run 2c"
+    type             : bb2
+    start            : "2029-10-01"
+    end              : "2029-10-31"
+    liveFraction     : 0.5
+    triggerRejection : 400.
+    comment          : "Run 2c; 2BB commissioning"
  },
  {
-    name     : "SummerShutdown2030"
-    type     : noData
-    start    : "2030-07-15"
-    end      : "2030-09-30"
-    fraction : 0.
-    comment  : "Summer shutdown 2030"
+    name             : "Run 2d"
+    type             : bb2
+    start            : "2029-11-01"
+    end              : "2030-07-14"
+    liveFraction     : 0.9
+    triggerRejection : 400.
+    comment          : "Run 2d; 2BB"
  },
  {
-    name     : "Run 2e"
-    type     : bb2
-    start    : "2030-10-01"
-    end      : "2030-10-31"
-    fraction : 0.5
-    comment  : "Run 2e; 2BB commissioning"
+    name             : "SummerShutdown2030"
+    type             : noData
+    start            : "2030-07-15"
+    end              : "2030-09-30"
+    liveFraction     : 0.
+    triggerRejection : 1.
+    comment          : "Summer shutdown 2030"
  },
  {
-    name     : "Run 2f"
-    type     : bb2
-    start    : "2030-11-01"
-    end      : "2031-07-13"
-    fraction : 0.9
-    comment  : "Run 2f; 2BB"
+    name             : "Run 2e"
+    type             : bb2
+    start            : "2030-10-01"
+    end              : "2030-10-31"
+    liveFraction     : 0.5
+    triggerRejection : 400.
+    comment          : "Run 2e; 2BB commissioning"
  },
  {
-    name     : "SummerShutdown2031"
-    type     : noData
-    start    : "2031-07-14"
-    end      : "2031-09-30"
-    fraction : 0.
-    comment  : "Summer shutdown 2030"
+    name             : "Run 2f"
+    type             : bb2
+    start            : "2030-11-01"
+    end              : "2031-07-13"
+    liveFraction     : 0.9
+    triggerRejection : 400.
+    comment          : "Run 2f; 2BB"
  },
  {
-    name     : "Run 2g"
-    type     : bb2
-    start    : "2031-10-01"
-    end      : "2031-10-31"
-    fraction : 0.5
-    comment  : "Run 2g; 2BB commissioning"
+    name             : "SummerShutdown2031"
+    type             : noData
+    start            : "2031-07-14"
+    end              : "2031-09-30"
+    liveFraction     : 0.
+    triggerRejection : 1.
+    comment          : "Summer shutdown 2030"
  },
  {
-    name     : "Run 2h"
-    type     : bb2
-    start    : "2031-11-01"
-    end      : "2032-07-11"
-    fraction : 0.9
-    comment  : "Run 2h; 2BB"
+    name             : "Run 2g"
+    type             : bb2
+    start            : "2031-10-01"
+    end              : "2031-10-31"
+    liveFraction     : 0.5
+    triggerRejection : 400.
+    comment          : "Run 2g; 2BB commissioning"
  },
  {
-    name     : "Analysis1"
-    type     : noData
-    start    : "2032-07-12"
-    end      : "2037-11-30"
-    fraction : 0.
-    comment  : "Post data analysis"
+    name             : "Run 2h"
+    type             : bb2
+    start            : "2031-11-01"
+    end              : "2032-07-11"
+    liveFraction     : 0.9
+    triggerRejection : 400.
+    comment          : "Run 2h; 2BB"
+ },
+ {
+    name             : "Analysis1"
+    type             : noData
+    start            : "2032-07-12"
+    end              : "2037-11-30"
+    liveFraction     : 0.
+    triggerRejection : 1.
+    comment          : "Post data analysis"
  }
 ,
  {
-    name     : "Analysis2"
-    type     : noData
-    start    : "2037-12-01"
-    end      : "2037-12-31"
-    fraction : 0.
-    comment  : "Final month"
+    name             : "Analysis2"
+    type             : noData
+    start            : "2037-12-01"
+    end              : "2037-12-31"
+    liveFraction     : 0.
+    triggerRejection : 1.
+    comment          : "Final month"
  }
 ]
 
@@ -239,49 +265,42 @@ RunParameters : [
     type             : bb1
     eventSize        : 200
     eventsPerDay     : 6.46E9
-    triggerRejection : 400.
     comment          : "1BB nominal running"
  },
  {
     type             : bb2
     eventSize        : 400
     eventsPerDay     : 11.75E9
-    triggerRejection : 400.
     comment          : "2BB nominal running"
  },
  {
     type             : noData
     eventSize        : 0
     eventsPerDay     : 0
-    triggerRejection : 1
     comment          : "Not taking data"
  },
  {
     type             : cosmicCalOnly
     eventSize        : 20. // kB
     eventsPerDay     : 1E6
-    triggerRejection : 1.
     comment          : "Cosmic rays extracted; calorimeter only"
  },
  {
     type             : cosmicExtracted
     eventSize        : 40. // kB
     eventsPerDay     : 2E6
-    triggerRejection : 1.
     comment          : "Cosmic rays; extracted"
  },
  {
     type             : cosmicNoField
     eventSize        : 40. // kB
     eventsPerDay     : 2E6
-    triggerRejection : 1.
     comment          : "Cosmic rays; inserted; field off"
  },
  {
     type             : cosmic
     eventSize        : 40. // kB
     eventsPerDay     : 4E6
-    triggerRejection : 1.
     comment          : "Cosmic rays; inserted; field on"
  }
 ]

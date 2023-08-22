@@ -30,21 +30,23 @@ public:
   struct Config {
     using Name = fhicl::Name;
     using Comment = fhicl::Comment;
-    fhicl::Atom<std::string> name    { Name{"name"},     Comment{"A name for this running period."}};
-    fhicl::Atom<std::string> type    { Name{"type"},     Comment{"A name from the enum in RunType.hh."} };
-    fhicl::Atom<std::string> start   { Name{"start"},    Comment{"Starting date in format yyyy-mm-dd"}};
-    fhicl::Atom<std::string> end     { Name{"end"},      Comment{"Ending date in format yyyy-mm-dd"}};
-    fhicl::Atom<std::string> comment { Name{"comment"},  Comment{"A human meaningfull description of this run period."}};
-    fhicl::Atom<double>      fraction{ Name{"fraction"}, Comment{"Fraction of time that is live."}};
+    fhicl::Atom<std::string> name    { Name{"name"},                     Comment{"A name for this running period."}};
+    fhicl::Atom<std::string> type    { Name{"type"},                     Comment{"A name from the enum in RunType.hh."} };
+    fhicl::Atom<std::string> start   { Name{"start"},                    Comment{"Starting date in format yyyy-mm-dd"}};
+    fhicl::Atom<std::string> end     { Name{"end"},                      Comment{"Ending date in format yyyy-mm-dd"}};
+    fhicl::Atom<std::string> comment { Name{"comment"},                  Comment{"A human meaningfull description of this run period."}};
+    fhicl::Atom<double>      liveFraction{ Name{"liveFraction"},         Comment{"Fraction of time that is live."}};
+    fhicl::Atom<double>      triggerRejection{ Name{"triggerRejection"}, Comment{"Rejection factor for the trigger; typically 200 or 400."}};
   };
 
   RunPeriod( Config const& conf );
 
-  RunType             type()      const { return _type;      }
-  TDatime const&      startDate() const { return _startDate; }
-  TDatime const&      endDate()   const { return _endDate;   }
-  float               fraction()  const { return _fraction;  }
-  std::string const&  comment()   const { return _comment;   }
+  RunType             type()              const { return _type;              }
+  TDatime const&      startDate()         const { return _startDate;         }
+  TDatime const&      endDate()           const { return _endDate;           }
+  double              liveFraction()      const { return _liveFraction;      }
+  double              triggerRejection()  const { return _triggerRejection;  }
+  std::string const&  comment()           const { return _comment;           }
 
   // Alert: this is sometimes empty;  see note 1.
   std::vector<WeekIn> const & weeks() const { return _weeks; }
@@ -63,8 +65,9 @@ private:
   // Weeks fully or partly within this run period.
   std::vector<WeekIn> _weeks;
 
-  float       _fraction;  // Fraction of time spent running.
-  RunType     _type;      // From the enum.
+  double      _liveFraction;      // Fraction of time spent running.
+  double      _triggerRejection;  // The rejection factor of the trigger, 1:N, where N is typically 200 or 400.
+  RunType     _type;              // From the enum.
 
 };
 

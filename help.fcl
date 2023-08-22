@@ -22,12 +22,13 @@ rootOutputFileName : "dummy.root"
 # List all of the running periods
 RunPeriods : [
  {
-    name     : "Name"
-    type     : noData
-    start    : "2024-01-01"
-    end      : "2024-01-31"
-    fraction : 0
-    comment  : ""
+    name             : "Name"
+    type             : noData
+    start            : "2024-01-01"
+    end              : "2024-01-31"
+    liveFraction     : 0
+    triggerRejection : 400.
+    comment          : ""
  }
 ]
 
@@ -37,7 +38,6 @@ RunParameters : [
     type             : bb1
     eventSize        : 200
     eventsPerDay     : 6.46E9
-    triggerRejection : 400.
     comment          : ""
  }
 ]
