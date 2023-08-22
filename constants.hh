@@ -17,6 +17,11 @@ namespace constants {
   constexpr unsigned secondsPerDay  =  secondsPerHour*hoursPerDay;
   constexpr unsigned secondsPerWeek =  secondsPerHour*hoursPerDay*daysPerWeek;
 
+  constexpr int nBoosterCyclesPerMICycle = 21;
+  constexpr double t_DR                  = 1.694E-6;                           // Period of Delivery Ring (s)
+  constexpr double t_booster             = 1./15.;                             // Period of booster (s)
+  constexpr double t_MI                  = t_booster*nBoosterCyclesPerMICycle; // Duration of one MI cycle (s)
+  constexpr double nMICyclesPerDay       = double(secondsPerDay)/t_MI;         // Number of MI cycles in one day
 }
 
 #endif
