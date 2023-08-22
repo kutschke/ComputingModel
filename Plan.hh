@@ -15,6 +15,7 @@ public:
   Plan( PlanInputs const& inp );
 
   std::vector<PlanWeek>  const& weeks()            const { return  _weeks;            }
+  std::vector<PlanMonth> const& months()           const { return  _months;           }
   std::vector<Resources> const& resourcesPerWeek() const { return  _resourcesPerWeek; }
 
   void print() const;
