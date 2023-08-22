@@ -10,7 +10,8 @@ using std::endl;
 
 RunPeriod::RunPeriod( Config const& conf):
   _comment(conf.comment()),
-  _fraction(conf.fraction()),
+  _liveFraction(conf.liveFraction()),
+  _triggerRejection(conf.triggerRejection()),
   _type(RunType( conf.type()))
 {
   _startDate.Set( dayStart(conf.start()).c_str() );
@@ -25,11 +26,12 @@ void RunPeriod::addWeeks( std::vector<WeekIn> const& ws){
 }
 
 std::ostream& operator<<(std::ostream& os, const RunPeriod& r ){
-  os << "  Type: "     << r.type()
-     << "  Start: "    << r.startDate().AsString()
-     << "  End: "      << r.endDate().AsString()
-     << "  Fraction: " << r.fraction()
-     << "  nWeeks: "   << r.weeks().size();
+  os << "  Type: "              << r.type()
+     << "  Start: "             << r.startDate().AsString()
+     << "  End: "               << r.endDate().AsString()
+     << "  Live fraction: "     << r.liveFraction()
+     << "  Trigger rejection: " << r.triggerRejection()
+     << "  nWeeks: "            << r.weeks().size();
   if ( !r.comment().empty() ){
     os << "\n        " << r.comment();
   }
