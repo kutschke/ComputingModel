@@ -27,6 +27,6 @@ Data& Data::Data::operator+=( Data const& rhs){
 }
 
 std::ostream& operator<<(std::ostream& os, const Data& d ){
-  os << d.type() << " " << d.events() << " " << d.size() << endl;
+  os << "Data type: " << d.type() << ";  Events:" << d.events() << ";  Size (TB): " << d.size();
   return os;
 }
