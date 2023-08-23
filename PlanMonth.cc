@@ -108,7 +108,7 @@ void PlanMonth::checkWeeks( std::vector<PlanWeek> const& ws ){
 
 void PlanMonth::printWeeks ( std::ostream& os, std::string const& prefix ) const{
   for ( auto w: _weeksInMonth){
-    os << prefix << w.week() << "  Days in this month: " << w.nDays() << "   Fraction: " << w.fraction() << endl;
+    os << prefix << w.week() << "  Days in this month: " << w.nDays() << "   Fraction: " << w.fractionOfWeek() << endl;
   }
 }
 

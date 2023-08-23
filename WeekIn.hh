@@ -12,14 +12,14 @@ class WeekIn {
 public:
   WeekIn ( PlanWeek const& aweek, unsigned anDays );
 
-  PlanWeek const& week()     const { return _week;     }
-  unsigned        nDays()    const { return _nDays;    }
-  double          fraction() const { return _fraction; }
+  PlanWeek const& week()           const { return _week;           }
+  unsigned        nDays()          const { return _nDays;          }
+  double          fractionOfWeek() const { return _fractionOfWeek; }
 
 private:
   PlanWeek const& _week;
-  unsigned        _nDays;    // Number of days in this week that are part of the longer time period.
-  double          _fraction; // Fraction of the week in the longer time period.
+  unsigned        _nDays;          // Number of days in this week that are part of the longer time period.
+  double          _fractionOfWeek; // Fraction of the week in the longer time period.
 };
 
 std::ostream& operator<<(std::ostream& os, const WeekIn& w );
