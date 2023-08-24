@@ -7,10 +7,11 @@ using std::endl;
 using std::cerr;
 using std::cout;
 
-Data::Data ( DataType atype, double aevents, double asize):
+Data::Data ( DataType atype, double aevents, double asize, int anDays):
   _type(atype),
   _events(aevents),
-  _size(asize){
+  _size(asize),
+  _nDays(anDays){
 }
 
 Data& Data::Data::operator+=( Data const& rhs){
@@ -23,10 +24,15 @@ Data& Data::Data::operator+=( Data const& rhs){
 
   _events += rhs._events;
   _size   += rhs._size;
+  _nDays  += rhs._nDays;
   return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Data& d ){
-  os << "Data type: " << d.type() << ";  Events:" << d.events() << ";  Size (TB): " << d.size();
+  os << "Data type: "    << d.type()
+     << ";  Events: "    << d.events()
+     << ";  Size (TB): " << d.size()
+     << ";  nDays: "     << d.nDays()
+    ;
   return os;
 }

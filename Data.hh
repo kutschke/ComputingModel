@@ -12,11 +12,12 @@ public:
 
   Data():_type(DataType::unknown),_events(0.),_size(0.){}
 
-  Data ( DataType atype, double aevents, double asize);
+  Data ( DataType atype, double aevents, double asize, int anDays);
 
   DataType type()   const { return _type;}
   double   events() const { return _events;}
   double   size()   const { return _size;}
+  int      nDays()  const { return _nDays;}
 
   Data& operator+=( Data const& rhs);
 
@@ -25,6 +26,7 @@ private:
   DataType _type;
   double   _events;
   double   _size;
+  int      _nDays;
 
 };
 
