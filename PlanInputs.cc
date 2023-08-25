@@ -279,6 +279,43 @@ void PlanInputs::goodInputsOrThrow(){
     throw std::domain_error("Non-contiguous running periods.");
   }
 
+  // Except for frst and last, run periods must start on Monday and end on Saturday.
+  int nBad2{0};
+  size_t last = _runPeriods.size()-1;
+  for ( size_t i = 0; i< _runPeriods.size(); ++i ) {
+    auto const& rp = _runPeriods.at(i);
+    auto d0 = dayOfWeek ( rp.startDate() );
+    if ( i != 0 &&  d0 != 0 ){
+      cerr << "Start date of a RunPeriod is not a Sunday."
+           << "\n   RunPeriod: " << rp << endl;
+      ++nBad2;
+    }
+    auto d1 = dayOfWeek( rp.endDate() );
+    if ( i != last && d1 != 6 ){
+      cerr << "End date of a RunPeriod is not a Saturday."
+           << "\n   RunPeriod: " << rp << endl;
+      ++nBad2;
+    }
+  }
+  if ( nBad2 != 0 ){
+    throw std::domain_error("Some RunPeriods have invalid start or end dates.");
+  }
+
+
+  // Warnings if the summer shutdowns are not 12 weeks.
+  for ( auto const& rp : _runPeriods ){
+    auto i = rp.comment().find("Summer");
+    if ( i != std::string::npos ){
+      DurationCalculator dc;
+      auto w = dc.inWeeks( rp.startDate(), rp.endDate() );
+      int iw = std::round(w);
+      if ( iw != 12 ){
+        cerr << "\nWarning: summer shutdown is not 12 weeks long.  Hope that's OK."
+             << "\n" << rp << endl;
+      }
+    }
+  }
+
   // Require RunParameters to be complete (excluding RunType::unknown).
   if (  _runParameters.size() != RunType::size()-1 ){
     cerr << "Missing specification of RunParameters "
@@ -286,5 +323,6 @@ void PlanInputs::goodInputsOrThrow(){
          << "\n Number of values in enum (excluding unknown): " << RunType::size()-1;
     throw std::domain_error("Missing values in the RunParameters stanza.");
   }
+
 
 }
