@@ -33,7 +33,13 @@ int main( int nargs, char** argc) {
   std::cout << "BB2 status: " << bb2.status() << std::endl;
 
   // Cross-check that sums over a typical year make sense
+  sumYear( inp, plan, 2026, DataType::bb2OnSpill);
+  sumYear( inp, plan, 2027, DataType::bb2OnSpill);
+  sumYear( inp, plan, 2029, DataType::bb2OnSpill);
   sumYear( inp, plan, 2030, DataType::bb2OnSpill);
+  sumYear( inp, plan, 2031, DataType::bb2OnSpill);
+  sumYear( inp, plan, 2032, DataType::bb2OnSpill);
+  sumYear( inp, plan, 2033, DataType::bb2OnSpill);
 
   return 0;
 }
