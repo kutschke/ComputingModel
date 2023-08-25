@@ -1,5 +1,4 @@
 #include "BB2.hh"
-
 #include "constants.hh"
 
 #include <cmath>
@@ -23,9 +22,10 @@ BB2::BB2(){
   double nTriggeredEventsPerDay = nPulsesPerDay/400.;
   double eventSize = 400.*constants::kBToTB;
   double dataSizePerDay = nTriggeredEventsPerDay * eventSize;
-  double dataSizePerYear = dataSizePerDay*365.25*0.67;
-
-  double nTriggeredEventsPerYear = nTriggeredEventsPerDay*365.25*0.67;
+  double liveFractionPerWeek    = (20./21.)*0.9;
+  double liveFractionPerYear    = (281./365.);
+  double dataSizePerYear = dataSizePerDay*365.*liveFractionPerYear*liveFractionPerWeek;
+  double nTriggeredEventsPerYear = nTriggeredEventsPerDay*liveFractionPerYear*liveFractionPerWeek*365;
 
   cout << "Pulses per spill :       " << nPulsesPerSpill   << endl;
   cout << "Pulses per MI Cycle :    " << nPulsesPerMICycle << endl;
