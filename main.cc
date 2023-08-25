@@ -41,5 +41,7 @@ int main( int nargs, char** argc) {
   sumYear( inp, plan, 2032, DataType::bb2OnSpill);
   sumYear( inp, plan, 2033, DataType::bb2OnSpill);
 
+  inp.dumpRunPeriods ( "runPeriods.txt" );
+
   return 0;
 }

@@ -43,6 +43,9 @@ public:
 
   void print() const;
 
+  // Write run periods to a file for processing by a root Macro.
+  void dumpRunPeriods( std::string const& fileName) const;
+
 private:
 
   std::vector<RunPeriod>          _runPeriods;

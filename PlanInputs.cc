@@ -12,8 +12,9 @@
 #include "fhiclcpp/types/Table.h"
 
 #include <array>
-#include <stdexcept>
+#include <fstream>
 #include <iostream>
+#include <stdexcept>
 
 using std::cout;
 using std::cerr;
@@ -328,3 +329,16 @@ void PlanInputs::goodInputsOrThrow(){
 
 
 }
+
+void PlanInputs::dumpRunPeriods( std::string const& fileName) const{
+
+  std::ofstream out(fileName.c_str());
+
+  for ( auto const& rp : _runPeriods ){
+    out << inputFormat(rp.startDate(),true)
+        << "  " << inputFormat(rp.endDate(),true)
+        << " \"" << rp.comment() << "\""
+        << endl;
+  }
+}
+

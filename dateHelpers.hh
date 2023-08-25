@@ -37,4 +37,7 @@ std::string dayStart( std::string const& date);
 // Append one second before midnight to a date string
 std::string dayEnd( std::string const& date);
 
+// Return date in the format: "yyyy-mm-dd hh:mm:ss".
+std::string inputFormat( TDatime const& t, bool quoted=false );
+
 #endif
