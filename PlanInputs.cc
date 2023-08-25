@@ -311,7 +311,9 @@ void PlanInputs::goodInputsOrThrow(){
       int iw = std::round(w);
       if ( iw != 12 ){
         cerr << "\nWarning: summer shutdown is not 12 weeks long.  Hope that's OK."
-             << "\n" << rp << endl;
+             << "\n" << rp
+             << "\nDuration: " << w 
+             << endl;
       }
     }
   }
