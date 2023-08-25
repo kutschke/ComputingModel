@@ -234,15 +234,42 @@ RunPeriods : [
     name             : "Run 2h"
     type             : bb2
     start            : "2031-10-26"
-    end              : "2032-07-17"
+    end              : "2032-07-10"
     liveFraction     : 0.9
     triggerRejection : 400.
     comment          : "Run 2h; 2BB"
  },
  {
+    name             : "SummerShutdown2032"
+    type             : noData
+    start            : "2032-07-11"
+    end              : "2032-10-02"
+    liveFraction     : 0.
+    triggerRejection : 1.
+    comment          : "Summer shutdown 2032"
+ },
+ {
+    name             : "Run 2i"
+    type             : bb2
+    start            : "2032-10-03"
+    end              : "2032-10-30"
+    liveFraction     : 0.5
+    triggerRejection : 400.
+    comment          : "Run 2i; 2BB commissioning"
+ },
+ {
+    name             : "Run 2j"
+    type             : bb2
+    start            : "2032-10-31"
+    end              : "2033-07-16"
+    liveFraction     : 0.9
+    triggerRejection : 400.
+    comment          : "Run 2j; 2BB"
+ },
+ {
     name             : "Analysis1"
     type             : noData
-    start            : "2032-07-18"
+    start            : "2033-07-17"
     end              : "2037-12-05"
     liveFraction     : 0.
     triggerRejection : 1.
