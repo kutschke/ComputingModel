@@ -12,7 +12,8 @@ RunPeriod::RunPeriod( Config const& conf):
   _comment(conf.comment()),
   _liveFraction(conf.liveFraction()),
   _triggerRejection(conf.triggerRejection()),
-  _type(RunType( conf.type()))
+  _type(RunType( conf.type())),
+  _color(Color(conf.color()))
 {
   _startDate.Set( dayStart(conf.start()).c_str() );
   _endDate.Set(   dayEnd(conf.end()    ).c_str() );

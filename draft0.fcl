@@ -31,6 +31,7 @@ RunPeriods : [
     end              : "2024-02-03"
     liveFraction     : 0
     triggerRejection : 1.
+    color            : black
     comment          : "Detectors not yet ready; no data taking."
  },
  {
@@ -40,6 +41,7 @@ RunPeriods : [
     end              : "2024-06-29"
     liveFraction     : 0.9
     triggerRejection : 1.
+    color            : blue
     comment          : "Calorimeter in Mu2e Hall taking cosmics"
  },
  {
@@ -49,6 +51,7 @@ RunPeriods : [
     end              : "2024-08-31"
     liveFraction     : 0.25
     triggerRejection : 1.
+    color            : blue
     comment          : "Calorimeter+Tracker+CRV in extracted position early commissioning"
  },
  {
@@ -58,6 +61,7 @@ RunPeriods : [
     end              : "2025-02-15"
     liveFraction     : 0.5
     triggerRejection : 1.
+    color            : blue
     comment          : "Cosmic Ray test run ending in Detector KPP"
  },
  {
@@ -67,6 +71,7 @@ RunPeriods : [
     end              : "2026-01-03"
     liveFraction     : 0.70
     triggerRejection : 1.
+    color            : blue
     comment          : "Cosmic Ray running between Detector KPP and insertion into Magnet"
  },
  {  name             : "Insertion"
@@ -75,6 +80,7 @@ RunPeriods : [
     end              : "2026-01-31"
     liveFraction     : 0
     triggerRejection : 1.
+    color            : black
     comment          : "No data taking; insertion of detector into magnet"
  },
  {
@@ -84,6 +90,7 @@ RunPeriods : [
     end              : "2026-02-14"
     liveFraction     : 0.4
     triggerRejection : 1.
+    color            : blue
     comment          : "Cosmic Ray running inserted into magnet; field off"
  },
  {
@@ -93,6 +100,7 @@ RunPeriods : [
     end              : "2026-06-27"
     liveFraction     : 0.4
     triggerRejection : 1.
+    color            : blue
     comment          : "Cosmic Ray running; inserted position; field on; no beam"
  },
  {
@@ -102,6 +110,7 @@ RunPeriods : [
     end              : "2026-08-29"
     liveFraction     : 0.5
     triggerRejection : 200.
+    color            : red
     comment          : "Commissioning with beam; 1BB; low duty cycle"
  },
  {
@@ -111,6 +120,7 @@ RunPeriods : [
     end              : "2026-10-17"
     liveFraction     : 0.9
     triggerRejection : 400.
+    color            : red
     comment          : "Run 1a; 1BB"
  },
  {
@@ -120,6 +130,7 @@ RunPeriods : [
     end              : "2026-11-14"
     liveFraction     : 0.5
     triggerRejection : 200.
+    color            : red
     comment          : "Run 1b; commmission 2BB running"
  },
  {
@@ -129,6 +140,7 @@ RunPeriods : [
     end              : "2027-01-16"
     liveFraction     : 0.9
     triggerRejection : 400.
+    color            : red
     comment          : "Run 1c; 2BB"
  },
  {
@@ -138,6 +150,7 @@ RunPeriods : [
     end              : "2029-01-13"
     liveFraction     : 0.
     triggerRejection : 1.
+    color            : black
     comment          : "Long shutdown"
  },
  {
@@ -147,6 +160,7 @@ RunPeriods : [
     end              : "2029-02-10"
     liveFraction     : 0.5
     triggerRejection : 200.
+    color            : red
     comment          : "Run 2a; 2BB commissioning"
  },
  {
@@ -156,6 +170,7 @@ RunPeriods : [
     end              : "2029-07-14"
     liveFraction     : 0.9
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2a; 2BB "
  },
  {
@@ -165,6 +180,7 @@ RunPeriods : [
     end              : "2029-10-06"
     liveFraction     : 0.
     triggerRejection : 1.
+    color            : black
     comment          : "Summer shutdown 2029"
  },
  {
@@ -174,6 +190,7 @@ RunPeriods : [
     end              : "2029-10-27"
     liveFraction     : 0.5
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2c; 2BB commissioning"
  },
  {
@@ -183,6 +200,7 @@ RunPeriods : [
     end              : "2030-07-13"
     liveFraction     : 0.9
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2d; 2BB"
  },
  {
@@ -192,6 +210,7 @@ RunPeriods : [
     end              : "2030-10-05"
     liveFraction     : 0.
     triggerRejection : 1.
+    color            : black
     comment          : "Summer shutdown 2030"
  },
  {
@@ -201,6 +220,7 @@ RunPeriods : [
     end              : "2030-11-02"
     liveFraction     : 0.5
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2e; 2BB commissioning"
  },
  {
@@ -210,6 +230,7 @@ RunPeriods : [
     end              : "2031-07-12"
     liveFraction     : 0.9
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2f; 2BB"
  },
  {
@@ -219,6 +240,7 @@ RunPeriods : [
     end              : "2031-10-04"
     liveFraction     : 0.
     triggerRejection : 1.
+    color            : black
     comment          : "Summer shutdown 2031"
  },
  {
@@ -228,6 +250,7 @@ RunPeriods : [
     end              : "2031-10-25"
     liveFraction     : 0.5
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2g; 2BB commissioning"
  },
  {
@@ -237,6 +260,7 @@ RunPeriods : [
     end              : "2032-07-10"
     liveFraction     : 0.9
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2h; 2BB"
  },
  {
@@ -246,6 +270,7 @@ RunPeriods : [
     end              : "2032-10-02"
     liveFraction     : 0.
     triggerRejection : 1.
+    color            : black
     comment          : "Summer shutdown 2032"
  },
  {
@@ -255,6 +280,7 @@ RunPeriods : [
     end              : "2032-10-30"
     liveFraction     : 0.5
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2i; 2BB commissioning"
  },
  {
@@ -264,6 +290,7 @@ RunPeriods : [
     end              : "2033-07-16"
     liveFraction     : 0.9
     triggerRejection : 400.
+    color            : red
     comment          : "Run 2j; 2BB"
  },
  {
@@ -273,6 +300,7 @@ RunPeriods : [
     end              : "2037-12-05"
     liveFraction     : 0.
     triggerRejection : 1.
+    color            : black
     comment          : "Post data analysis"
  }
 ,
@@ -283,6 +311,7 @@ RunPeriods : [
     end              : "2037-12-31"
     liveFraction     : 0.
     triggerRejection : 1.
+    color            : black
     comment          : "Final month"
  }
 ]

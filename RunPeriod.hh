@@ -13,6 +13,7 @@
 //
 
 #include "TDatime.h"
+#include "Color.hh"
 #include "RunType.hh"
 #include "WeekIn.hh"
 
@@ -34,6 +35,7 @@ public:
     fhicl::Atom<std::string> type    { Name{"type"},                     Comment{"A name from the enum in RunType.hh."} };
     fhicl::Atom<std::string> start   { Name{"start"},                    Comment{"Starting date in format yyyy-mm-dd"}};
     fhicl::Atom<std::string> end     { Name{"end"},                      Comment{"Ending date in format yyyy-mm-dd"}};
+    fhicl::Atom<std::string> color   { Name{"color"},                    Comment{"Name of a color for plotting the timeline of run periods. See Color.hh."}};
     fhicl::Atom<std::string> comment { Name{"comment"},                  Comment{"A human meaningfull description of this run period."}};
     fhicl::Atom<double>      liveFraction{ Name{"liveFraction"},         Comment{"Fraction of time that is live."}};
     fhicl::Atom<double>      triggerRejection{ Name{"triggerRejection"}, Comment{"Rejection factor for the trigger; typically 200 or 400."}};
@@ -46,6 +48,7 @@ public:
   TDatime const&      endDate()           const { return _endDate;           }
   double              liveFraction()      const { return _liveFraction;      }
   double              triggerRejection()  const { return _triggerRejection;  }
+  Color               color()             const { return _color;             }
   std::string const&  comment()           const { return _comment;           }
 
   // Alert: this is sometimes empty;  see note 1.
@@ -68,6 +71,7 @@ private:
   double      _liveFraction;      // Fraction of time spent running.
   double      _triggerRejection;  // The rejection factor of the trigger, 1:N, where N is typically 200 or 400.
   RunType     _type;              // From the enum.
+  Color       _color;             // Used to plot the timeline of run periods.
 
 };
 

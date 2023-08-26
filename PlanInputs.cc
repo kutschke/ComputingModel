@@ -337,6 +337,7 @@ void PlanInputs::dumpRunPeriods( std::string const& fileName) const{
   for ( auto const& rp : _runPeriods ){
     out << inputFormat(rp.startDate(),true)
         << "  " << inputFormat(rp.endDate(),true)
+        << "  " << rp.color().id()
         << " \"" << rp.comment() << "\""
         << endl;
   }
