@@ -49,6 +49,7 @@ public:
   double              liveFraction()      const { return _liveFraction;      }
   double              triggerRejection()  const { return _triggerRejection;  }
   Color               color()             const { return _color;             }
+  int                 nDays()             const { return _nDays;             }
   std::string const&  comment()           const { return _comment;           }
 
   // Alert: this is sometimes empty;  see note 1.
@@ -72,6 +73,7 @@ private:
   double      _triggerRejection;  // The rejection factor of the trigger, 1:N, where N is typically 200 or 400.
   RunType     _type;              // From the enum.
   Color       _color;             // Used to plot the timeline of run periods.
+  int         _nDays;             // Duration, in days.
 
 };
 

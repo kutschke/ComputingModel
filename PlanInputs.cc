@@ -330,16 +330,52 @@ void PlanInputs::goodInputsOrThrow(){
 
 }
 
-void PlanInputs::dumpRunPeriods( std::string const& fileName) const{
+void PlanInputs::dumpRunPeriods( std::string const& baseFileName) const{
 
-  std::ofstream out(fileName.c_str());
+  // Create file used to plot the schedule
+  std::string txtFileName = baseFileName + ".txt";
+  std::ofstream txt(txtFileName.c_str());
+
+  constexpr bool useQuotes{true};
 
   for ( auto const& rp : _runPeriods ){
-    out << inputFormat(rp.startDate(),true)
-        << "  " << inputFormat(rp.endDate(),true)
+    constexpr bool hhmmss{true};
+    txt << formatDate(rp.startDate(),hhmmss,useQuotes)
+        << "  " << formatDate(rp.endDate(),hhmmss,useQuotes)
         << "  " << rp.color().id()
         << " \"" << rp.comment() << "\""
         << endl;
   }
-}
 
+  // Create CSV file.
+  std::string csvFileName = baseFileName + ".csv";
+  std::ofstream csv(csvFileName.c_str());
+
+  // Column titles.
+  csv << "\"Start Date\""
+      << ",\"End Date\""
+      << ",\"Duration (Days)\""
+      << ",\"Live Fraction\""
+      << ",\"Trigger Rejection\""
+      << ",\"Description\""
+      << endl;
+  for ( auto const& rp : _runPeriods ){
+    constexpr bool hhmmss{false};
+    csv << formatDate(rp.startDate(),hhmmss,useQuotes)
+        << "," << formatDate(rp.endDate(),hhmmss,useQuotes)
+        << "," << rp.nDays();
+    if ( rp.liveFraction() != 0. ){
+      csv << "," << rp.liveFraction();
+    } else{
+      csv << ",";
+    }
+    if ( rp.triggerRejection() != 1. ){
+      csv << "," << rp.triggerRejection();
+    } else{
+      csv << ",";
+    }
+    csv << ",\"" << rp.comment() << "\""
+        << endl;
+  }
+
+}

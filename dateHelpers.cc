@@ -41,9 +41,8 @@ std::string dayEnd( std::string const& date){
   return date + " 23:59:59";
 }
 
-// Return date in the format: "yyyy-mm-dd hh:mm:ss".
-std::string inputFormat( TDatime const& t, bool quoted ){
-
+// Format the date according to the arguments.
+std::string formatDate( TDatime const& t, bool hhmmss, bool quoted ){
   std::ostringstream s;
 
   const std::string q     = "\"";
@@ -56,9 +55,11 @@ std::string inputFormat( TDatime const& t, bool quoted ){
   s << std::setw(4) << t.GetYear();
   s << dash << std::setw(2)  << std::setfill('0') << t.GetMonth();
   s << dash << std::setw(2)  << std::setfill('0') << t.GetDay();
-  s << space << std::setw(2) << std::setfill('0') << t.GetHour();
-  s << colon << std::setw(2) << std::setfill('0') << t.GetMinute();
-  s << colon << std::setw(2) << std::setfill('0') << t.GetSecond();
+  if ( hhmmss ) {
+    s << space << std::setw(2) << std::setfill('0') << t.GetHour();
+    s << colon << std::setw(2) << std::setfill('0') << t.GetMinute();
+    s << colon << std::setw(2) << std::setfill('0') << t.GetSecond();
+  }
   if ( quoted ) {
     s << q;
   }

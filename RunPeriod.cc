@@ -1,9 +1,12 @@
 #include "RunPeriod.hh"
+#include "DurationCalculator.hh"
 #include "constants.hh"
 #include "dateHelpers.hh"
 
+#include <cmath>
 #include <iostream>
 #include <string>
+
 using std::cerr;
 using std::cout;
 using std::endl;
@@ -15,8 +18,13 @@ RunPeriod::RunPeriod( Config const& conf):
   _type(RunType( conf.type())),
   _color(Color(conf.color()))
 {
+
+  // There is no c'tor from a date in this format!
   _startDate.Set( dayStart(conf.start()).c_str() );
   _endDate.Set(   dayEnd(conf.end()    ).c_str() );
+
+  DurationCalculator dc;
+  _nDays = std::round(dc.inDays( _startDate, _endDate));
 }
 
 void RunPeriod::addWeeks( std::vector<WeekIn> const& ws){

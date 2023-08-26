@@ -37,7 +37,10 @@ std::string dayStart( std::string const& date);
 // Append one second before midnight to a date string
 std::string dayEnd( std::string const& date);
 
-// Return date in the format: "yyyy-mm-dd hh:mm:ss".
-std::string inputFormat( TDatime const& t, bool quoted=false );
+// Return date in one of several formats:
+// The full format is: "yyyy-mm-dd hh:mm:ss", with the quotes
+//  - If hhmmss is false, do not print the hh:mm:ss or the space before it.
+//  - If quoted is false, do not print the quotes.
+std::string formatDate( TDatime const& t, bool hhmmss=true, bool quoted=true );
 
 #endif

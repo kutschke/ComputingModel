@@ -44,7 +44,7 @@ public:
   void print() const;
 
   // Write run periods to a file for processing by a root Macro.
-  void dumpRunPeriods( std::string const& fileName) const;
+  void dumpRunPeriods( std::string const& baseFileName) const;
 
 private:
 
