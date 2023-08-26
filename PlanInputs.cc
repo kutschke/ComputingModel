@@ -39,7 +39,6 @@ namespace {
   struct Config{
     fhicl::Table<VerbosityConfig>   verbosityConfig{Name("verbosity"), Comment{"Verbosity levels for different parts of the code."}};
     fhicl::Table<PlanDuration>      planDuration {Name("PlanDuration"), Comment{"Duration of the plan."}};
-    fhicl::Atom<std::string>        rootOutputFileName { Name{"rootOutputFileName"}, Comment{"Name of the root output file that has histograms of resource use."}};
     fhicl::Sequence<fhicl::Table<RunPeriod::Config>> runs {Name("RunPeriods"),Comment{"A list of all of the run periods in the model."}};
     fhicl::Sequence<fhicl::Table<RunParameters::Config>> runParameters {Name("RunParameters"),Comment{"Parameters for each type of run: 1BB, 2BB, Cosmic."}};
   };
@@ -72,6 +71,7 @@ PlanInputs::PlanInputs( std::string const& fileName ){
   }
 
   // Create the configuration object from the input configuation file.
+  setFileNames( fileName );
   cout << "PlanInputs filename: " << fileName << endl;
   auto config(tableFromFile(fileName));
 
@@ -85,8 +85,6 @@ PlanInputs::PlanInputs( std::string const& fileName ){
   verbosity.buildPlan        = config().verbosityConfig().buildPlan();
   verbosity.weeksInMonth     = config().verbosityConfig().weeksInMonth();
   verbosity.weeksInRunPeriod = config().verbosityConfig().weeksInRunPeriod();
-
-  rootOutputFileName = config().rootOutputFileName();
 
   std::vector<RunPeriod::Config> runs = config().runs();
   for ( RunPeriod::Config const& c : runs ){
@@ -118,6 +116,16 @@ RunParameters const& PlanInputs::runParameters( RunType rt ) const{
     throw std::domain_error("RunParameters not found");
   }
   return i->second;
+}
+
+void PlanInputs::setFileNames( std::string const& f ){
+  auto i = f.find(".fcl");
+  if ( i != std::string::npos ){
+    baseFileName = f.substr(0,i);
+  } else{
+    baseFileName = f;
+  }
+  rootOutputFileName = baseFileName + ".root";
 }
 
 void PlanInputs::print() const{
@@ -330,10 +338,10 @@ void PlanInputs::goodInputsOrThrow(){
 
 }
 
-void PlanInputs::dumpRunPeriods( std::string const& baseFileName) const{
+void PlanInputs::dumpRunPeriods()  const{
 
   // Create file used to plot the schedule
-  std::string txtFileName = baseFileName + ".txt";
+  std::string txtFileName = baseFileName + "_runPeriods.txt";
   std::ofstream txt(txtFileName.c_str());
 
   constexpr bool useQuotes{true};
@@ -348,7 +356,7 @@ void PlanInputs::dumpRunPeriods( std::string const& baseFileName) const{
   }
 
   // Create CSV file.
-  std::string csvFileName = baseFileName + ".csv";
+  std::string csvFileName = baseFileName + "_runPeriods.csv";
   std::ofstream csv(csvFileName.c_str());
 
   // Column titles.

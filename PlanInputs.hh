@@ -28,6 +28,8 @@ public:
   TDatime   startDate;
   TDatime   endDate;
 
+  std::string inputFileName;
+  std::string baseFileName;
   std::string rootOutputFileName;
 
   DurationCalculator duration;
@@ -44,13 +46,15 @@ public:
   void print() const;
 
   // Write run periods to a file for processing by a root Macro.
-  void dumpRunPeriods( std::string const& baseFileName) const;
+  // Also write a csv file that is readable by Excel.
+  void dumpRunPeriods() const;
 
 private:
 
   std::vector<RunPeriod>          _runPeriods;
   std::map<RunType,RunParameters> _runParameters;
 
+  void setFileNames( std::string const& f );
   void goodInputsOrThrow();
 
 };
