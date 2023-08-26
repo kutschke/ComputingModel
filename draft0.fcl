@@ -294,25 +294,14 @@ RunPeriods : [
     comment          : "Run 2j; 2BB"
  },
  {
-    name             : "Analysis1"
+    name             : "Analysis"
     type             : noData
     start            : "2033-07-17"
-    end              : "2037-12-05"
-    liveFraction     : 0.
-    triggerRejection : 1.
-    color            : black
-    comment          : "Post data analysis"
- }
-,
- {
-    name             : "Analysis2"
-    type             : noData
-    start            : "2037-12-06"
     end              : "2037-12-31"
     liveFraction     : 0.
     triggerRejection : 1.
     color            : black
-    comment          : "Final month"
+    comment          : "Analysis"
  }
 ]
 

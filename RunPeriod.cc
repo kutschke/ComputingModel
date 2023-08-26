@@ -41,7 +41,18 @@ std::ostream& operator<<(std::ostream& os, const RunPeriod& r ){
 }
 
 void RunPeriod::printWeeks ( std::ostream& os, std::string const& prefix ) const{
-  for ( auto w: _weeks ){
-    os << prefix << w << endl; //"  Days in this run period: " << w.nDays() << "   Fraction: " << w.fraction() << endl;
+  if ( _weeks.size() < 6 ) {
+    for ( auto w: _weeks ){
+      os << prefix << w << endl;
+    }
+  } else{
+    size_t n = _weeks.size()-1;
+    os << prefix << _weeks.at(0)    << endl;
+    os << prefix << _weeks.at(1)    << endl;
+    os << prefix << "............"  << endl;
+    os << prefix << _weeks.at(n-1)  << endl;
+    os << prefix << _weeks.at(n)    << endl;
   }
+
+
 }
