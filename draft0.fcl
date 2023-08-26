@@ -145,11 +145,21 @@ RunPeriods : [
     name             : "LongShutdown"
     type             : noData
     start            : "2027-01-17"
-    end              : "2029-01-13"
+    end              : "2028-07-01"
     liveFraction     : 0.
     triggerRejection : 1.
     color            : black
     comment          : "Long shutdown"
+ },
+ {
+    name             : "CosmicRestart2028"
+    type             : cosmic
+    start            : "2028-07-02"
+    end              : "2029-01-13"
+    liveFraction     : 0.75
+    triggerRejection : 1.
+    color            : blue
+    comment          : "Cosmic restart coming out of long shutdown"
  },
  {
     name             : "Run 2a"
@@ -186,7 +196,7 @@ RunPeriods : [
     type             : cosmic
     start            : "2029-08-26"
     end              : "2029-10-06"
-    liveFraction     : 0.
+    liveFraction     : 0.75
     triggerRejection : 1.
     color            : blue
     comment          : "In-shutdown cosmic restart 2029"
@@ -226,7 +236,7 @@ RunPeriods : [
     type             : cosmic
     start            : "2030-08-25"
     end              : "2030-10-05"
-    liveFraction     : 0.
+    liveFraction     : 0.75
     triggerRejection : 1.
     color            : blue
     comment          : "In-shutdown cosmic restart 2030"
@@ -266,7 +276,7 @@ RunPeriods : [
     type             : cosmic
     start            : "2031-08-24"
     end              : "2031-10-04"
-    liveFraction     : 0.
+    liveFraction     : 0.75
     triggerRejection : 1.
     color            : blue
     comment          : "In-shutdown cosmic restart 2031"
@@ -306,7 +316,7 @@ RunPeriods : [
     type             : cosmic
     start            : "2032-08-22"
     end              : "2032-10-02"
-    liveFraction     : 0.
+    liveFraction     : 0.75
     triggerRejection : 1.
     color            : blue
     comment          : "In-shutdown cosmic restart 2032"

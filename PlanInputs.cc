@@ -329,7 +329,7 @@ void PlanInputs::goodInputsOrThrow(){
 
   // Warnings if the summer cosmic restarts are not 6 weeks.
   for ( auto const& rp : _runPeriods ){
-    auto i = rp.comment().find("restart");
+    auto i = rp.comment().find("cosmic restart");
     if ( i != std::string::npos ){
       DurationCalculator dc;
       auto w = dc.inWeeks( rp.startDate(), rp.endDate() );
