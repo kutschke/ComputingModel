@@ -311,17 +311,33 @@ void PlanInputs::goodInputsOrThrow(){
   }
 
 
-  // Warnings if the summer shutdowns are not 12 weeks.
+  // Warnings if the summer shutdowns are not 6 weeks.
   for ( auto const& rp : _runPeriods ){
     auto i = rp.comment().find("Summer");
     if ( i != std::string::npos ){
       DurationCalculator dc;
       auto w = dc.inWeeks( rp.startDate(), rp.endDate() );
       int iw = std::round(w);
-      if ( iw != 12 ){
-        cerr << "\nWarning: summer shutdown is not 12 weeks long.  Hope that's OK."
+      if ( iw != 6 ){
+        cerr << "\nWarning: summer shutdown is not 6 weeks long.  Hope that's OK."
              << "\n" << rp
-             << "\nDuration: " << w 
+             << "\nDuration: " << w
+             << endl;
+      }
+    }
+  }
+
+  // Warnings if the summer cosmic restarts are not 6 weeks.
+  for ( auto const& rp : _runPeriods ){
+    auto i = rp.comment().find("restart");
+    if ( i != std::string::npos ){
+      DurationCalculator dc;
+      auto w = dc.inWeeks( rp.startDate(), rp.endDate() );
+      int iw = std::round(w);
+      if ( iw != 6 ){
+        cerr << "\nWarning: summer cosmic restart is not 6 weeks long.  Hope that's OK."
+             << "\n" << rp
+             << "\nDuration: " << w
              << endl;
       }
     }
