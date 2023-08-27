@@ -1,3 +1,6 @@
+//
+// Main program to run the Mu2e Computing Model.
+//
 #include "BB1.hh"
 #include "BB2.hh"
 #include "PlanInputs.hh"
@@ -41,6 +44,7 @@ int main( int nargs, char** argc) {
   sumYear( inp, plan, 2032, DataType::bb2OnSpill);
   sumYear( inp, plan, 2033, DataType::bb2OnSpill);
 
+  // Write output file describing the run periods for use by people and other software
   inp.dumpRunPeriods ();
 
   return 0;
