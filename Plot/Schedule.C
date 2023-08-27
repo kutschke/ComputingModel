@@ -21,7 +21,6 @@
   PlotInputs inp("draft0_runPeriods.txt");
   std::vector<Phase> const& phases{inp.phases()};
   cout << "Number of phases: " << inp.phases().size() << endl;
-  //inp.printPhases( cout );
 
   TDatime const& plotStart(inp.start());
   TDatime const& planEnd(inp.end());
@@ -38,11 +37,11 @@
        << endl;
 
 
+  // Define the minimum box size used for plotting.
   TDatime tmp1(2020, 1,1,0,0,0);
   TDatime tmp2(2020, 1,2,0,0,0);
   double day=tmp2.Convert()-tmp1.Convert();
   double minboxsize=14*day;
-
 
   TCanvas *canvas = new TCanvas("c","Data Processing Plan", 1600, 1600 );
 
@@ -85,14 +84,8 @@
     box->DrawBox( phase.start.Convert(), low, phase.start.Convert()+dt, high);
 
     text->SetTextColor( phase.color );
-    auto const& start = phase.start;
-    auto const& end = phase.end;
-    ostringstream os;
 
-    cout << setw(40) << phase.name << " (" << start.GetMonth() <<  "/" << start.GetDay() << "/" << start.GetYear()
-         << " - "
-         << end.GetMonth() <<  "/" << end.GetDay() << "/" << end.GetYear() << ")" << endl;
-    TString name = TString(phase.name + os.str() );
+    TString name = TString(phase.name);
     if ( i < phases.size()/2+2){
       text->SetTextAlign(12);
       text->DrawText( phase.end.Convert()+halfQuarter, mid, name);
