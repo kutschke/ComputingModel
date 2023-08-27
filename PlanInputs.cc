@@ -381,7 +381,7 @@ void PlanInputs::dumpRunPeriods()  const{
       << ",\"Duration (Days)\""
       << ",\"Live Fraction\""
       << ",\"Trigger Rejection\""
-      << ",\"Description\""
+      << ",,\"Description\""
       << endl;
   for ( auto const& rp : _runPeriods ){
     constexpr bool hhmmss{false};
@@ -398,7 +398,7 @@ void PlanInputs::dumpRunPeriods()  const{
     } else{
       csv << ",";
     }
-    csv << ",\"" << rp.comment() << "\""
+    csv << ",,\"" << rp.comment() << "\""
         << endl;
   }
 
