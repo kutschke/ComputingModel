@@ -14,6 +14,10 @@ Data::Data ( DataType atype, double aevents, double asize, int anDays):
   _nDays(anDays){
 }
 
+Data::Data ( DataType::enum_type atype, double aevents, double asize, int anDays):
+  Data( DataType(atype), aevents, asize, anDays){
+}
+
 Data& Data::Data::operator+=( Data const& rhs){
 
   if ( _type != rhs._type ){

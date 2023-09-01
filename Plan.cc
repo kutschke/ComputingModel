@@ -196,7 +196,7 @@ void Plan::addRawData() {
         auto dt = ( runPeriod.type() == RunType::bb1 ) ? DataType::bb1OnSpill : DataType::bb2OnSpill;
         double fractionOfWeek = w.fractionOfWeek();     //  Fraction of the week that is in this running period.
         double f = rpLiveFraction*fractionOfWeek/triggerRejection;
-        Data tmp( DataType(dt), params.eventsPerWeek()*f, params.bytesPerWeek()*f, w.nDays() );
+        Data tmp( dt, params.eventsPerWeek()*f, params.bytesPerWeek()*f, w.nDays() );
         //cout <<  "          week:  " << w.week() << " " << w.fractionOfWeek() << endl;
         //cout <<  "          tmp:   " << tmp << endl;
         //cout <<  "          check: " << iw << "  " << _resourcesPerWeek[iw].index << endl;
