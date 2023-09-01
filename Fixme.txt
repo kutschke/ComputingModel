@@ -1,5 +1,3 @@
-Understand why total data volume seems small
-Add overload to the Data c'tor to allow either DataType or DataType::enum_type
 First principles #events calculation given accelerator parameters and trigger rejection.
-Use make_pair in the enum initializers
+Add raw data for cosmic ray run periods
 
