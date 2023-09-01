@@ -175,51 +175,11 @@ RunPeriods : [
     name             : "Run 2b"
     type             : bb2
     start            : "2029-02-11"
-    end              : "2029-07-14"
-    liveFraction     : 0.9
-    triggerRejection : 400.
-    color            : red
-    comment          : "Run 2b; 2BB "
- },
- {
-    name             : "SummerShutdown2029"
-    type             : noData
-    start            : "2029-07-15"
-    end              : "2029-08-25"
-    liveFraction     : 0.
-    triggerRejection : 1.
-    color            : black
-    comment          : "Summer shutdown 2029"
- },
- {
-    name             : "SummerShutdownCosmics2029"
-    type             : cosmic
-    start            : "2029-08-26"
-    end              : "2029-10-06"
-    liveFraction     : 0.75
-    triggerRejection : 1.
-    color            : blue
-    comment          : "In-shutdown cosmic restart 2029"
- },
- {
-    name             : "Run 3a"
-    type             : bb2
-    start            : "2029-10-07"
-    end              : "2029-10-27"
-    liveFraction     : 0.5
-    triggerRejection : 400.
-    color            : red
-    comment          : "Run 3a; 2BB commissioning"
- },
- {
-    name             : "Run 3b"
-    type             : bb2
-    start            : "2029-10-28"
     end              : "2030-07-13"
     liveFraction     : 0.9
     triggerRejection : 400.
     color            : red
-    comment          : "Run 3b; 2BB"
+    comment          : "Run 2b; 2BB "
  },
  {
     name             : "SummerShutdown2030"
@@ -242,24 +202,24 @@ RunPeriods : [
     comment          : "In-shutdown cosmic restart 2030"
  },
  {
-    name             : "Run 4a"
+    name             : "Run 3a"
     type             : bb2
     start            : "2030-10-06"
     end              : "2030-10-26"
     liveFraction     : 0.5
     triggerRejection : 400.
     color            : red
-    comment          : "Run 4a; 2BB commissioning"
+    comment          : "Run 3a; 2BB commissioning"
  },
  {
-    name             : "Run 4b"
+    name             : "Run 3b"
     type             : bb2
     start            : "2030-10-27"
     end              : "2031-07-12"
     liveFraction     : 0.9
     triggerRejection : 400.
     color            : red
-    comment          : "Run 4b; 2BB"
+    comment          : "Run 3b; 2BB"
  },
  {
     name             : "SummerShutdown2031"
@@ -282,7 +242,7 @@ RunPeriods : [
     comment          : "In-shutdown cosmic restart 2031"
  },
  {
-    name             : "Run 5a"
+    name             : "Run 4a"
     type             : bb2
     start            : "2031-10-05"
     end              : "2031-10-25"
@@ -292,7 +252,7 @@ RunPeriods : [
     comment          : "Run 5a; 2BB commissioning"
  },
  {
-    name             : "Run 5b"
+    name             : "Run 4b"
     type             : bb2
     start            : "2031-10-26"
     end              : "2032-07-10"
@@ -322,24 +282,24 @@ RunPeriods : [
     comment          : "In-shutdown cosmic restart 2032"
  },
  {
-    name             : "Run 6a"
+    name             : "Run 5a"
     type             : bb2
     start            : "2032-10-03"
     end              : "2032-10-23"
     liveFraction     : 0.5
     triggerRejection : 400.
     color            : red
-    comment          : "Run 6a; 2BB commissioning"
+    comment          : "Run 5a; 2BB commissioning"
  },
  {
-    name             : "Run 6b"
+    name             : "Run 5b"
     type             : bb2
     start            : "2032-10-24"
     end              : "2033-07-16"
     liveFraction     : 0.9
     triggerRejection : 400.
     color            : red
-    comment          : "Run 6b; 2BB"
+    comment          : "Run 5b; 2BB"
  },
  {
     name             : "Analysis"
