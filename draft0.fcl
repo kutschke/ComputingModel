@@ -26,17 +26,17 @@ RunPeriods : [
     name             : "PreRunning"
     type             : noData
     start            : "2024-01-01"
-    end              : "2024-02-03"
+    end              : "2024-07-06"
     liveFraction     : 0
     triggerRejection : 1.
     color            : black
-    comment          : "Detectors not yet ready; no data taking."
+    comment          : "Detectors not yet ready; VST and test stand data taking."
  },
  {
     name             : "cosmicExtracted1"
     type             : cosmicCalOnly
-    start            : "2024-02-04"
-    end              : "2024-06-29"
+    start            : "2024-07-07"
+    end              : "2024-10-12"
     liveFraction     : 0.9
     triggerRejection : 1.
     color            : blue
@@ -45,8 +45,8 @@ RunPeriods : [
  {
     name             : "cosmicExtracted2"
     type             : cosmicExtracted
-    start            : "2024-06-30"
-    end              : "2024-08-31"
+    start            : "2024-10-13"
+    end              : "2024-12-14"
     liveFraction     : 0.25
     triggerRejection : 1.
     color            : blue
@@ -55,8 +55,8 @@ RunPeriods : [
  {
     name             : "cosmicExtracted3"
     type             : cosmicExtracted
-    start            : "2024-09-01"
-    end              : "2025-02-15"
+    start            : "2024-12-15"
+    end              : "2025-03-15"
     liveFraction     : 0.5
     triggerRejection : 1.
     color            : blue
@@ -65,7 +65,7 @@ RunPeriods : [
  {
     name             : "cosmicExtracted4"
     type             : cosmicExtracted
-    start            : "2025-02-16"
+    start            : "2025-03-16"
     end              : "2026-01-03"
     liveFraction     : 0.70
     triggerRejection : 1.
