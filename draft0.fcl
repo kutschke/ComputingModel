@@ -46,7 +46,7 @@ RunPeriods : [
     name             : "cosmicExtracted2"
     type             : cosmicExtracted
     start            : "2024-10-13"
-    end              : "2024-12-14"
+    end              : "2025-01-25"
     liveFraction     : 0.25
     triggerRejection : 1.
     color            : blue
@@ -55,7 +55,7 @@ RunPeriods : [
  {
     name             : "cosmicExtracted3"
     type             : cosmicExtracted
-    start            : "2024-12-15"
+    start            : "2025-01-26"
     end              : "2025-03-15"
     liveFraction     : 0.5
     triggerRejection : 1.

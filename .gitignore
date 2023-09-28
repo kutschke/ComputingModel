@@ -9,3 +9,5 @@
 *.log*
 *.root
 main
+*_runPeriods.txt
+*_runPeriods.csv

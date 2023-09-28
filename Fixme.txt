@@ -1,3 +1,8 @@
 First principles #events calculation given accelerator parameters and trigger rejection.
 Add raw data for cosmic ray run periods
 
+Sep 28, 2023
+ - Greg says detector KPP is "March 2025"
+ - Bob T says "Tracker ready for cosmics" is "March 2025"
+ - I put tracker ready at the end of Jan and the KPP in mid March
+
